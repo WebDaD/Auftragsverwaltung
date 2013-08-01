@@ -1,0 +1,13 @@
+NOTES
+
+DB-Felder:
+ID|DATUM|ORT|STRAßE|AUFTRAGSGEBER|STATUS
+
+Stati: In Arbeit,Bericht verschickt, Wiedervorlage, OK, gezahlt, mahnung
+
+Auftragsgeber -> Eigene tabelle
+
+
+Userverwaltung
+
+TODO
