@@ -1,8 +1,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" media="all" href="css/jsDatePick_ltr.css" />
+		<script src="js/jsDatePick.full.1.3.js" type="text/javascript" ></script>
 		<script src="js/functions.js" type="text/javascript"></script>
 		<script src="js/gui.js" type="text/javascript"></script>
+		<script src="js/sorttable.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div id="page-cover" class="hidden"><!-- Initially Hidden, will be used by Dialogs to dim the page--></div>
@@ -15,7 +18,8 @@
 			    <div id="navigation">
 			    	<ul>
 			    		<li><a href="#" onclick="navigateTo('auftragsnummer');">Auftragsnummer</a></li>
-			    		<li><a href="#" onclick="navigateTo('overview');">Übersicht</a></li>
+			    		<li><a href="#" onclick="navigateTo('overview');">Übersicht Aufträge</a></li>
+			    		<li><a href="#" onclick="navigateTo('auftraggeber');">Übersicht Auftraggeber</a></li>
 			    	</ul>
 			    </div>
 			    <div id="content">

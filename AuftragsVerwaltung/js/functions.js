@@ -1,9 +1,74 @@
+var cal;
 function init_page(){
-	
+	loadOverview();
 }
+
+
 function navigateTo(page){
-	
+	switch(page){
+	case "auftragsnummer":loadAuftragsnummer();break;
+	case "overview":loadOverview();break;
+	case "auftraggeber":loadAuftraggeber();break;
+	}
 }
+	
+function loadAuftragsnummer(){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'Auftragsnummer';
+		e("output_text").innerHTML = ajax.responseText;
+		cal = new JsDatePick({
+			useMode:2,
+			target:"nummer_datum",
+			limitToToday:true,
+			cellColorScheme:"ocean_blue",
+			imgPath:"./img/",
+			dateFormat:"%d.%m.%Y"
+				});
+		}
+	};
+	ajax.open("POST", "./php/nummer/loadNewDataSetForm.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", 0);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(null); 
+}
+function loadOverview(){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'Übersicht Aufträge';
+		e("output_text").innerHTML = ajax.responseText;
+		}
+	};
+	ajax.open("POST", "./php/overview/loadData.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", 0);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(null); 
+}
+function loadAuftraggeber(){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'Übersicht Auftraggeber';
+		e("output_text").innerHTML = ajax.responseText;
+		}
+	};
+	ajax.open("POST", "./php/auftraggeber/loadData.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", 0);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(null); 
+}
+	
 /**
  * Gets an Ajax Element
  * 
