@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta charset="utf8"/>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/jsDatePick_ltr.css" />
 		<script src="js/jsDatePick.full.1.3.js" type="text/javascript" ></script>

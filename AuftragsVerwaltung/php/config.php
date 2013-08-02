@@ -11,11 +11,9 @@ $VERSION="0.1";
 $AUTHOR="Dominik Sigmund";
 $COPYRIGHT=$PROGNAME." v".$VERSION." (c) 2013 WebDaD.eu";
 
-#DB-Access
+//DB-Access
 $db_server="localhost";
 $db_name="auftragsverwaltung";
-$db_user="auftragsverwaltung";
-$db_pass="auftragsverwaltung";
-
-
+$db_user="av";
+$db_pass="av";
 ?>

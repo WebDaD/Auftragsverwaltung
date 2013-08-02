@@ -55,7 +55,7 @@ body
 			}
 			#navigation
 				{
-				width:20%x;
+				width:15%;
 				margin-left:15px;
 				float:left;
 				border-right: 1px solid #C0C0C0;
@@ -84,7 +84,7 @@ body
 			#content
 				{
 				display:block;
-				width:70%;
+				width:75%;
 				height:90%;
 				left:205px;
 				float:clear;
