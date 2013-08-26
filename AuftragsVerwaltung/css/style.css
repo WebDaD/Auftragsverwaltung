@@ -38,7 +38,6 @@ body
 		#head
 			{
 			left:0px;
-			height: 159px;
 			margin-bottom:2%;
 			width: 100%;
 			}
@@ -46,11 +45,10 @@ body
 			 {
 			 width: 100%;
 			 left:0px;
-             height: 150px;
+             height: 100px;
 			 }
 		#content_main
 			{
-			height:100%;
 			white-space: nowrap;
 			}
 			#navigation
@@ -84,8 +82,8 @@ body
 			#content
 				{
 				display:block;
+				height:75%;
 				width:75%;
-				height:90%;
 				left:205px;
 				float:clear;
 				float:none;
@@ -155,6 +153,11 @@ body
 .hidden {
 	visibility:hidden !important;
 	opacity:0 !important;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 }
 /**
  * Element has an Error
@@ -166,4 +169,27 @@ body
 .error {
 	border:1px solid red;
 	background-color:#FF7256;
+	color:red;
+	
+}
+
+/**
+ * Element is Good
+ * 
+ * @version 1.0
+ * @since 0.1
+ * @author Dominik Sigmund
+*/
+.info {
+	border:1px solid green;
+	background-color:light-green;
+	color:green;
+	
+}
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
 }
