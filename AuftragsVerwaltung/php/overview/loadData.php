@@ -27,7 +27,7 @@ while($row=mysql_fetch_array($res)){
 	$dt = explode("-",$row["datum"]);
 	$datum = $dt[2].".".$dt[1].".".$dt[0];
 	$o .= "<tr>";
-	$o .= "	<td>".str_pad($row["id"],8, "0", STR_PAD_LEFT)."</td>";
+	$o .= "	<td>".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["datum"]."\">".$datum."</td>";
 	$o .= "	<td>".$row["strasse"]."</td>";
 	$o .= "	<td>".$row["plz"]."</td>";

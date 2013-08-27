@@ -16,6 +16,7 @@ function navigateTo(page){
 	case "overview":loadOverview();break;
 	case "auftraggeber":loadAuftraggeber();break;
 	case "login":loadLogin();break;
+	case "reports":loadReports();break;
 	}
 	}
 	else  {
@@ -62,6 +63,7 @@ function checkLogin(){
 	if(ajax.readyState == 4)
 		{
 		if(ajax.responseText=="1"){
+			clear();
 			isLoggedIn();
 			loadOverview();
 		}
@@ -71,7 +73,8 @@ function checkLogin(){
 		}
 		}
 	};
-	var params = p("login_name")+"&"+p("login_password");
+	
+	var params = p("login_name")+"&"+p("login_password", true);
 	ajax.open("POST", "./php/login/checkLogin.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", params.length);
@@ -129,20 +132,32 @@ function loadAuftragsnummer(){
 }
 function saveAuftragsNummer(){
 	var ajax = getAjax();
+	
 	ajax.onreadystatechange = function()
 	{
 	if(ajax.readyState == 4)
 		{
+		clear();
 		e("output_header").innerHTML = 'Auftragsnummer';
 		e("output_text").innerHTML = ajax.responseText;
 		}
 	};
-	var params=p("nummer_datum")+"&"+p("nummer_strasse")+"&"+p("nummer_plz")+"&"+p("nummer_ort")+"&"+p("nummer_auftraggeber");
+	var fd = new FormData;
+		if(e("nummer_file").files[0].name != null){
+	 	fd.append("File", e("nummer_file").files[0]);
+		}
+	 	fd.append("nummer_datum",e("nummer_datum").value);
+	 	fd.append("nummer_strasse",e("nummer_strasse").value);
+	 	fd.append("nummer_plz",e("nummer_plz").value);
+	 	fd.append("nummer_ort",e("nummer_ort").value);
+	 	fd.append("nummer_auftraggeber",e("nummer_auftraggeber").value);
+	 	fd.append("nummer_zusatz",e("nummer_zusatz").value);
+	 	fd.append("nummer_nummer",e("nummer_nummer").value);
+	 	
 	ajax.open("POST", "./php/nummer/saveDataSet.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	ajax.setRequestHeader("Content-length", params.length);
 	ajax.setRequestHeader("Connection", "close");
-	ajax.send(params); 
+	ajax.send(fd); 
 	wait();
 }
 function loadOverview(){
@@ -157,6 +172,23 @@ function loadOverview(){
 		}
 	};
 	ajax.open("POST", "./php/overview/loadData.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", 0);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(null); 
+	wait();
+}
+function loadReports(){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'reports';
+		e("output_text").innerHTML = ajax.responseText;
+		}
+	};
+	ajax.open("POST", "./php/reports/loadOverview.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", 0);
 	ajax.setRequestHeader("Connection", "close");
@@ -240,11 +272,13 @@ function saveOverviewStatus(id){
 	if(ajax.readyState == 4)
 		{
 		if(ajax.responseText == "1"){
+			clear();
 			togglePopup();
 			loadOverview();
 			m_i("Saved.");
 		}
 		else{
+			clear();
 			togglePopup();
 			loadOverview();
 			m_e(ajax.responseText);
@@ -267,11 +301,13 @@ function saveOverviewEdit(id){
 	if(ajax.readyState == 4)
 		{
 		if(ajax.responseText == "1"){
+			clear();
 			togglePopup();
 			loadOverview();
 			m_i("Saved.");
 		}
 		else{
+			clear();
 			togglePopup();
 			m_e(ajax.responseText);
 		}
@@ -372,17 +408,19 @@ function saveAuftragGeberEdit(id){
 	if(ajax.readyState == 4)
 		{
 		if(ajax.responseText == "1"){
+			clear();
 			togglePopup();
 			loadAuftraggeber();
 			m_i("Saved.");
 		}
 		else{
+			clear();
 			togglePopup();
 			m_e(ajax.responseText);
 		}
 		}
 	};
-	var params=p("ag_edit_name")+"&id="+id;
+	var params=p("ag_edit_name")+"&id="+id+"&"+p("ag_edit_adresse")+"&"+p("ag_edit_status");
 	ajax.open("POST", "./php/auftraggeber/saveDataSet.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", params.length);
@@ -415,9 +453,16 @@ function m_i(txt){
 }
 
 
-function p(id){
-	return id+"="+e(id).value;
+function p(id, encrypt){
+	if(encrypt){
+		var md5hash = SHA1(e(id).value);
+		return id+"="+md5hash;
+	}
+	else {
+		return id+"="+e(id).value;
+	}
 }
+
 /**
  * Gets an Ajax Element
  * 
@@ -541,6 +586,29 @@ function setClass(element,className){
 	element.className = className;
 }
 
+
+function clear(){
+	var elements = document.getElementsByTagName("input");
+	for (var ii=0; ii < elements.length; ii++) {
+	  if (elements[ii].type == "text") {
+	    elements[ii].value = "";
+	  } 
+	  if (elements[ii].type == "password") {
+		    elements[ii].value = "";
+	  } 
+	  if (elements[ii].type == "file") {
+		    elements[ii].files = null;
+	  } 	
+	}
+	var elements2 = document.getElementsByTagName("textarea");
+	for (var ii=0; ii < elements2.length; ii++) {
+		elements2[ii].innerHTML = "";
+	}
+	var elements3 = document.getElementsByTagName("select");
+	for (var ii=0; ii < elements3.length; ii++) {
+		elements3[ii].options.length=0;
+	}
+}
 
 /**
  * Checks if an Element has a Certain Class

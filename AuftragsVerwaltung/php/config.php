@@ -24,4 +24,7 @@ $oc["user"]="owncloud";
 $oc["pass"]="owncloud";
 $oc["basepath"]="C:\\xampp\\htdocs\\oc\\data\\admin\\files\\liste\\";
 $oc["http_link"]="http://localhost/oc/index.php/apps/files?dir=/Shared/liste/";
+
+//vars
+$AUFTRAGSNUMMER_FORMAT = "####/MMYY";
 ?>

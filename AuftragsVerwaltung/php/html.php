@@ -3,6 +3,12 @@
 function html_createInputText($id, $value=""){
 	return "<input name=\"".$id."\" id=\"".$id."\" type=\"text\" class=\"\" value=\"".$value."\"/>";
 }
+function html_createInputBigText($id, $value=""){
+	return "<textarea name=\"".$id."\" id=\"".$id."\" rows=\"3\">".$value."</textarea>";
+}
+function html_createInputFile($id){
+	return "<input name=\"".$id."\" id=\"".$id."\" type=\"file\" class=\"\" />";
+}
 function html_createInputPassword($id, $value=""){
 	return "<input name=\"".$id."\" id=\"".$id."\" type=\"password\" class=\"\" value=\"".$value."\"/>";
 }
@@ -35,6 +41,21 @@ function html_createInputSelectStatus($id,$gvalue=""){
 		}
 		else {
 			$output .= "<option value=\"".$value."\">".return_human_status($value)."</option>";
+		}
+	}
+	$output .= "</select>";
+	return $output;
+}
+function html_createInputSelectStatusAG($id,$gvalue=""){
+	$output = "";
+	$output .= "<select name=\"".$id."\" id=\"".$id."\">";
+	require_once 'functions.php';
+	foreach (return_ag_stati() as $value) {
+		if($value==$gvalue){
+			$output .= "<option value=\"".$value."\" selected>".return_human_ag_status($value)."</option>";
+		}
+		else {
+			$output .= "<option value=\"".$value."\">".return_human_ag_status($value)."</option>";
 		}
 	}
 	$output .= "</select>";

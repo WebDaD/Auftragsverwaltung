@@ -1,62 +1,32 @@
-NOTES
+Neuer Auftrag: (v2)
+- Auftraggeber: Erlaube tippen (beim tippen erscheint ein Feld "Adresse" und eine CheckBox (von oben) -> creates a new auftraggeber
 
-DB-Felder:
-ID|DATUM|ORT|PLZ|STRAßE|AUFTRAGSGEBER|STATUS
-
-Stati: In Arbeit,Bericht verschickt, Wiedervorlage, OK, gezahlt, mahnung
-
-Auftragsgeber -> Eigene tabelle
-
-
-Userverwaltung
-
-TODO
-
-Add FIles to OwnCLoud: simple create a folder and create files in there.
-BUT before: as admin, create auft�ge and share it with all. and make it bearbeitbar
-
-Users:
-All USers have to be put to group all
-May edit oc/lib/users/database.php. use md5 instead of the key they are using.
-Then its easy to login using them.
-
-2 Gruppen: lesen/Schreiben ; lesen only
-Read = See Data
-Write = Edit, New, Delete, Save
-Steuer = Change Auftrag Status
+reports (v2)
+ + googlemaps
+ + overview
+ + tabellen
+ + auftraggeberzahlungen/stati
 
 
-new TODOs:
+TESTING:
+- Login
+- Login lock
+- Dateianhang
+- Auftragsnummer
+- Auftraggeber
 
-Dataset.xml Auftraggeber
-
-ag_nr: 8950/MMYY
-
-Auftragsnummer: auftraggeber oder tippen --> Dateianhang ---> strasswe-nr ---> vorschläge (googlemapsapi) --> adresszusatz
-auftraggeber: adressse
-
-ag-blacklist
-
-status:+abgesagt -ok
-
-reports (+goglemaps)
-
-qnaps_backup
-db -> tagesbackups + replication
-files -> no delete on backup
-
-
-Sicherheit:
-Ersetzen md5 durch sha1.
-owncloud-database.php: 71, 104, 205 -> sha1
-Pw per sha1 schicken.
-Session counter
-Account active or locked
-Clear all input values on save or cancel
-Use SSL when authenticating users or performing sensitive operations.
-Regenerate the session id whenever the security level changes (such as logging in). You can even regenerate the session id every request if you wish.
-Have sessions time out
-Don't use register globals
-Store authentication details on the server. That is, don't send details such as username in the cookie.
-Check the $_SERVER['HTTP_USER_AGENT']. This adds a small barrier to session hijacking. You can also check the IP address. But this causes problems for users that have changing IP address due to load balancing on multiple internet connections etc (which is the case in our environment here).
-http://phpsec.org/projects/guide/4.html
+INSTALLATION auf QNAP:
+- OwnCloud aus dem Netz ziehen und auf MySQL installieren
+- oc/lib/users/database.php: 71, 104, 205 -> sha1
+- Admin: Create auftraege, create groups read,write,steuer
+- Share auftraege with read and write
+- Create Users in groups
+- Copy auftragsnummer-app
+- Create Database (with install.sql)
+- edit config.php
+- Create Backup-Workflows:
+	- Copy Files: OwnCloud, Auftragsnummer
+	- Copy Folder of OwnCloud-Files (important: no delete on file_delete!)
+	- MySQL-Server: Replikation auf QNAP2
+	- MySQL-Server: mysqldump auf QNAP2
+	- config-files auf qnap2

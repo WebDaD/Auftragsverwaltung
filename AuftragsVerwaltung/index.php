@@ -11,6 +11,7 @@ require_once 'php/config.php';
 		<script src="js/jsDatePick.full.1.3.js" type="text/javascript" ></script>
 		<script src="js/functions.js" type="text/javascript"></script>
 		<script src="js/gui.js" type="text/javascript"></script>
+		<script src="js/sha1.js" type="text/javascript"></script>
 		<script src="js/sorttable.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -26,6 +27,7 @@ require_once 'php/config.php';
 			    		<li><a href="#" onclick="navigateTo('auftragsnummer');">Auftragsnummer</a></li>
 			    		<li><a href="#" onclick="navigateTo('overview');">Übersicht Aufträge</a></li>
 			    		<li><a href="#" onclick="navigateTo('auftraggeber');">Übersicht Auftraggeber</a></li>
+			    		<li><a href="#" onclick="navigateTo('reports');">Berichte</a></li>
 			    		<li id="logout_button"><a href="#" onclick="logout();">Logout</a></li>
 			    	</ul>
 			    </div>
