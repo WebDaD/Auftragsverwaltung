@@ -3,13 +3,22 @@ function return_Auftragsnummer($id,$datum, $format){
 	$r = $format;
 	if(strstr($format,"MM")!==false){
 		$month = explode(".",$datum)[1];
-		$r = str_replace("MM", $month, $r);
+		$r = str_replace("MM", str_pad($month,2,"0",STR_PAD_LEFT), $r);
+	}
+	if(strstr($format,"YYYY")!==false){
+		$year = explode(".",$datum)[2];
+		$r = str_replace("YYYY", $year, $r);
 	}
 	if(strstr($format,"YY")!==false){
 		$year = explode(".",$datum)[2];
 		$r = str_replace("YY", substr($year,2,2), $r);
 	}
-	$r = str_replace("####", str_pad($id,4,"0",STR_PAD_LEFT), $r);
+	$length_of_id = substr_count($r, "#");
+	$repl_string="";
+	for($i=0;$i<$length_of_id;$i++){
+		$repl_string.="#";
+	}
+	$r = str_replace($repl_string, str_pad($id,$length_of_id,"0",STR_PAD_LEFT), $r);
 	return $r;
 }
 function getPar($id, $error){

@@ -8,11 +8,11 @@ $output .= html_popup_closeButton();
 $output .= "<h3>Statusänderung</h3>";
 $id = getPar("id", "No ID given.");
 $dbid = database_connect($db);
-$sql="SELECT status, id FROM auftraege WHERE id=".$id;
+$sql="SELECT status, id, datum FROM auftraege WHERE id=".$id;
 $res = mysql_query($sql,$dbid);
 $row = mysql_fetch_array($res);
 
-$aid = str_pad($row["id"],8, "0", STR_PAD_LEFT);
+$aid = return_Auftragsnummer($row["id"], $row["datum"], $AUFTRAGSNUMMER_FORMAT);
 $status = $row["status"];
 
 $output.="<table>";

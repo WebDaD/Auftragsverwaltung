@@ -30,3 +30,9 @@ INSTALLATION auf QNAP:
 	- MySQL-Server: Replikation auf QNAP2
 	- MySQL-Server: mysqldump auf QNAP2
 	- config-files auf qnap2
+- Messaging:
+	(info@termografie-berger.de, dominik.sigmund@webdad.eu)
+	- On RAID Fail
+	- On Downing of QNAP
+	- On Fail of Database
+	- On Fail of Reach of Web-Service

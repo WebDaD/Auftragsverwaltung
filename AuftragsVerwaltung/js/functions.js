@@ -313,7 +313,7 @@ function saveOverviewEdit(id){
 		}
 		}
 	};
-	var params=p("nummer_datum")+"&id="+id+"&"+p("nummer_strasse")+"&"+p("nummer_plz")+"&"+p("nummer_ort")+"&"+p("nummer_auftraggeber")+"&"+p("nummer_status");
+	var params=p("nummer_datum")+"&id="+id+"&"+p("nummer_strasse")+"&"+p("nummer_plz")+"&"+p("nummer_ort")+"&"+p("nummer_auftraggeber")+"&"+p("nummer_status")+"&"+p("nummer_nummer")+"&"+p("nummer_zusatz");
 	ajax.open("POST", "./php/overview/saveDataSet.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", params.length);
