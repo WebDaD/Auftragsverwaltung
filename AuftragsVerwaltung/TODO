@@ -1,6 +1,12 @@
-Neuer Auftrag: (v2)
-- Auftraggeber: Erlaube tippen (beim tippen erscheint ein Feld "Adresse" und eine CheckBox (von oben) -> creates a new auftraggeber
 
+Neuer Auftrag:
+
+Auftraggeber:  ( ) [DROPDOWN][v]
+               ( ) new from above
+               ( ) New: [ TEXT :: NAME]
+                        [ TEXTAREA :: ADRESS ]
+                        
+                        
 reports (v2)
  + googlemaps
  + overview
