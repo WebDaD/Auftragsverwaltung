@@ -1,7 +1,7 @@
 <?php
 //changes status of 1 auftrag to given overview_status
-include_once("../config.php");
-include_once("../functions.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 session_start();
 $id = getPar("id", "ID not set");
 $status = getPar("overview_status", "Status not set");

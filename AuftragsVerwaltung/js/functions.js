@@ -143,19 +143,32 @@ function saveAuftragsNummer(){
 		}
 	};
 	var fd = new FormData;
-		if(e("nummer_file").files[0].name != null){
+		if(e("nummer_file").files.length > 0){
 	 	fd.append("File", e("nummer_file").files[0]);
 		}
 	 	fd.append("nummer_datum",e("nummer_datum").value);
 	 	fd.append("nummer_strasse",e("nummer_strasse").value);
 	 	fd.append("nummer_plz",e("nummer_plz").value);
 	 	fd.append("nummer_ort",e("nummer_ort").value);
-	 	fd.append("nummer_auftraggeber",e("nummer_auftraggeber").value);
+	 	
 	 	fd.append("nummer_zusatz",e("nummer_zusatz").value);
 	 	fd.append("nummer_nummer",e("nummer_nummer").value);
 	 	
+	 	fd.append("nummer_rb",rb_val("nummer_rb"));
+	 	var ag_style = rb_val("nummer_rb");
+	 	if(ag_style=="rb_select"){
+	 		 fd.append("nummer_auftraggeber",e("nummer_auftraggeber").value);
+	 	}
+	 	else if(ag_style=="rb_above"){
+	 		fd.append("ag_name",e("ag_name").value);
+	 	}
+	 	else {
+	 		fd.append("ag_name",e("ag_name_full").value);
+	 		fd.append("ag_adresse",e("ag_adresse").value);
+	 	}
+	 	
 	ajax.open("POST", "./php/nummer/saveDataSet.php", true);
-	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	//ajax.setRequestHeader("Content-type", "multipart/form-data");
 	ajax.setRequestHeader("Connection", "close");
 	ajax.send(fd); 
 	wait();
@@ -504,6 +517,21 @@ function getAjax(){
 		}
 	return ajaxRequest;
 }
+function rb_val(name){
+	var radios = document.getElementsByName(name);
+	var val = "";
+	for (var i = 0, length = radios.length; i < length; i++) {
+	    if (radios[i].checked) {
+	        // do whatever you want with the checked radio
+	        val = radios[i].value;
+
+	        // only one radio can be logically checked, don't check the rest
+	        break;
+	    }
+	}
+	return val;
+}
+
 /**
  * Gets Element from the DOM
  * 

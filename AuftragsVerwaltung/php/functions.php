@@ -21,9 +21,14 @@ function return_Auftragsnummer($id,$datum, $format){
 	$r = str_replace($repl_string, str_pad($id,$length_of_id,"0",STR_PAD_LEFT), $r);
 	return $r;
 }
-function getPar($id, $error){
+function getPar($id, $error, $mandatory=true){
 	if(!isset($_POST[$id])){
-		die($error);
+		if($mandatory){
+			die($error);
+		}
+		else {
+			return "";
+		}
 	}
 	else {
 		return mysql_real_escape_string($_POST[$id]);

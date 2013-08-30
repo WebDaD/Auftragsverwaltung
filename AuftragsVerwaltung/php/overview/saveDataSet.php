@@ -1,8 +1,8 @@
 <?php
 //Saves the inputs and displays the number of the ID (with left-padded zeroes to 8
 //Input to database, create folder in owncloud base, create xml in folder, load into owncload db
-include_once("../config.php");
-include_once("../functions.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 session_start();
 $id = getPar("id", "ID not set");
 $datum = getPar("nummer_datum", "Datum not set");
@@ -14,6 +14,7 @@ $auftraggeber = getPar("nummer_auftraggeber", "Auftraggeber not set");
 $zusatz = getPar("nummer_zusatz", "Zusatz not set");
 $status = getPar("nummer_status", "Status not set");
 
+$old_datum = $datum;
 $dt = explode(".",$datum);
 $datum = $dt[2]."-".$dt[1]."-".$dt[0];
 
@@ -23,7 +24,7 @@ $sql="UPDATE auftraege SET datum='".$datum."', strasse='".$strasse."', plz='".$p
 
 $check = mysql_query($sql,$dbid);
 if($check){
-	$aid = return_Auftragsnummer($id, $datum, $AUFTRAGSNUMMER_FORMAT);
+	$aid = return_Auftragsnummer($id, $old_datum, $AUFTRAGSNUMMER_FORMAT);
 	$output="";
 	$output.="1";
 	echo $output;
@@ -31,7 +32,7 @@ if($check){
 	$handle = fopen($oc["basepath"].$aid."/dataset.xml", "w+");
 	fwrite($handle,"<dataset>");
 	fwrite($handle,"<auftragsnummer>".$aid."</auftragsnummer>");
-	fwrite($handle,"<datum>".$datum."</datum>");
+	fwrite($handle,"<datum>".$old_datum."</datum>");
 	fwrite($handle,"<strasse>".$strasse."</strasse>");
 	fwrite($handle,"<nummer>".$nummer."</nummer>\n");
 	fwrite($handle,"<plz>".$plz."</plz>");

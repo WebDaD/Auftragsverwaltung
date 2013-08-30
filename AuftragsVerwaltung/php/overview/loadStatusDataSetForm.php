@@ -1,8 +1,8 @@
 <?php
 //output: closebutton, title(h3), content(old val, new val), cancel, save
-include_once("../config.php");
-include_once("../functions.php");
-include_once("../html.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 $output="";
 $output .= html_popup_closeButton();
 $output .= "<h3>Statusänderung</h3>";

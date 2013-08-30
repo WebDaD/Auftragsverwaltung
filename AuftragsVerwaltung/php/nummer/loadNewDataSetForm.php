@@ -1,8 +1,9 @@
 <?php
 //displays fields to enter data
 
-include_once("../html.php");
-include_once("../config.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 session_start();
 $output  = "";
 if($_SESSION["write"]=="1"){
@@ -33,7 +34,33 @@ $output .= "		<td>".html_createInputText("nummer_zusatz")."</td>";
 $output .= "	</tr>";
 $output .= "	<tr>";
 $output .= "		<td>Auftraggeber</td>";
-$output .= "		<td>".html_createInputSelect("nummer_auftraggeber",$db, "id","name","auftraggeber")."</td>";
+$output .= "		<td>";
+$output .= "			<table>";
+$output .= "				<tr>";
+$output .= "					<td>".html_createRadioButton("nummer_rb", "rb_select",true)."</td>";
+$output .= "					<td>".html_createInputSelect("nummer_auftraggeber",$db, "id","name","auftraggeber")."</td>";
+$output .= "				</tr>";
+$output .= "				<tr>";
+$output .= "					<td>".html_createRadioButton("nummer_rb", "rb_above")."</td>";
+$output .= "					<td>Neu mit Werten von Oben + Name: ".html_createInputText("ag_name")."</td>";
+$output .= "				</tr>";
+$output .= "				<tr>";
+$output .= "					<td>".html_createRadioButton("nummer_rb", "rb_new")."</td>";
+$output .= "					<td>";
+$output .= "						<table>	";		
+$output .= "							<tr>	";
+$output .= "								<td>Name</td>";
+$output .= "								<td>".html_createInputText("ag_name_full")."</td>";
+$output .= "							</tr>	";
+$output .= "							<tr>	";
+$output .= "								<td>Adresse</td>";
+$output .= "								<td>".html_createInputBigText("ag_adresse")."</td>";
+$output .= "							</tr>	";
+$output .= "						</table>	";			
+$output .= "					</td>";
+$output .= "				</tr>";
+$output .= "			</table>";
+$output .= "		</td>";
 $output .= "	</tr>";
 $output .= "	<tr>";
 $output .= "		<td>Anhang</td>";

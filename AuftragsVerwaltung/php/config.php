@@ -22,9 +22,9 @@ $oc["server"]="localhost";
 $oc["name"]="owncloud";
 $oc["user"]="owncloud";
 $oc["pass"]="owncloud";
-$oc["basepath"]="C:\\xampp\\htdocs\\oc\\data\\admin\\files\\liste\\";
-$oc["http_link"]="http://localhost/oc/index.php/apps/files?dir=/Shared/liste/";
+$oc["basepath"]="/share/MD0_DATA/Auftraege/admin/files/auftraege/";
+$oc["http_link"]="http://192.168.1.18:2507/index.php/apps/files?dir=/Shared/auftraege/";
 
 //vars
-$AUFTRAGSNUMMER_FORMAT = "####/MMYY";
+$AUFTRAGSNUMMER_FORMAT = "####-MMYY";
 ?>

@@ -1,6 +1,6 @@
 <?php
-include_once("../functions.php");
-include_once("../html.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 $output="";
 $output.=html_popup_closeButton();
 $output.="<h3>New Auftraggeber</h3>";

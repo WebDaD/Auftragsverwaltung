@@ -1,7 +1,7 @@
 <?php
 //Save with edit_name in id
-include_once("../config.php");
-include_once("../functions.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 session_start();
 $id = getPar("id", "ID not set");
 

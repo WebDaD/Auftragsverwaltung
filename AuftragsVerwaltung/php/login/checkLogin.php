@@ -1,7 +1,7 @@
 <?php
 //login to oc-db and check if user exists and pwd is true. also set SESSION (uid,rights)
-include_once("../config.php");
-include_once("../functions.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 
 session_start();
 if (!isset($_SESSION['login_counter']))
@@ -51,6 +51,7 @@ else {
 		if(in_array("steuer", $groups)){
 			$_SESSION["steuer"] = "1";
 		}
+		$_SESSION['login_counter'] = 0;
 		echo "1";
 	}
 	else {

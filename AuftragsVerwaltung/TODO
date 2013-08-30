@@ -1,25 +1,9 @@
-
-Neuer Auftrag:
-
-Auftraggeber:  ( ) [DROPDOWN][v]
-               ( ) new from above
-               ( ) New: [ TEXT :: NAME]
-                        [ TEXTAREA :: ADRESS ]
-                        
-                        
 reports (v2)
  + googlemaps
  + overview
  + tabellen
  + auftraggeberzahlungen/stati
 
-
-TESTING:
-- Login
-- Login lock
-- Dateianhang
-- Auftragsnummer
-- Auftraggeber
 
 INSTALLATION auf QNAP:
 - OwnCloud aus dem Netz ziehen und auf MySQL installieren

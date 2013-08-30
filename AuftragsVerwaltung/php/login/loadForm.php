@@ -1,7 +1,7 @@
 <?php
 //just display a name textfield login_name and a pwd field named login_password, also 2 buttons
 
-include_once("../html.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 
 $output  = "";
 $output .= "<table>";

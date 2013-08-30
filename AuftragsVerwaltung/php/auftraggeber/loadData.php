@@ -1,8 +1,8 @@
 <?php
 //loads the overview (table of all auftr�ge)
-include_once("../config.php");
-include_once("../functions.php");
-include_once("../html.php");
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 session_start();
 $dbid = database_connect($db);
 $sql = "SELECT id, name, adresse, status FROM auftraggeber ORDER BY id DESC";
@@ -22,7 +22,7 @@ while($row=mysql_fetch_array($res)){
 	$o .= "<tr>";
 	$o .= "	<td>".$row["name"]."</td>";
 	$o .= "	<td>".$row["adresse"]."</td>";
-	$o .= "	<td>".$row["status"]."</td>";
+	$o .= "	<td>".return_human_ag_status($row["status"])."</td>";
 	if($_SESSION["write"]=="1"){
 	$o .= "	<td>".html_createImageButton("edit_entry_".$row["id"], "edit_auftraggeber.png","Edit", "loadAuftragGeberEdit('".$row["id"]."', '".$row["name"]."')")."</td>";
 	}
