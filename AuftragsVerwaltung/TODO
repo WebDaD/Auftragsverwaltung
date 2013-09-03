@@ -1,3 +1,4 @@
+
 reports (v2)
  + googlemaps
  + overview
@@ -14,11 +15,16 @@ INSTALLATION auf QNAP:
 - Copy auftragsnummer-app
 - Create Database (with install.sql)
 - edit config.php
+- WebServer:
+	- Virtual Directorys
+	- PHP.ini
+	- SSL-Path!
 - Create Backup-Workflows:
 	- Copy Files: OwnCloud, Auftragsnummer
-	- Copy Folder of OwnCloud-Files (important: no delete on file_delete!)
-	- MySQL-Server: Replikation auf QNAP2
-	- MySQL-Server: mysqldump auf QNAP2
+	- Copy Folder of OwnCloud-Files
+	- Copy Network Recycle Bin
+	- MySQL-Server: Replikation auf QNAP2 http://dev.mysql.com/doc/refman/5.1/en/replication.html
+	- MySQL-Server: mysqldump auf QNAP1 (dump_database.sh nach /root/, +x, cron
 	- config-files auf qnap2
 - Messaging:
 	(info@termografie-berger.de, dominik.sigmund@webdad.eu)
@@ -26,3 +32,10 @@ INSTALLATION auf QNAP:
 	- On Downing of QNAP
 	- On Fail of Database
 	- On Fail of Reach of Web-Service
+
+SYNC-CLIENT WINDOWS:
+ - Sync to https://192.168.1.18:8082/owncloud/
+ 
+ RECREATE DATA:
+ http://wiki.ubuntuusers.de/MySQL/Backup
+ 

@@ -19,7 +19,10 @@ require_once 'php/config.php';
 		<div id="popup" class="hidden"><!-- Initially Hidden, will be used by Dialogs --></div>
 		<div id="container">
 		    <div id="head">
-		        <img alt="Logo" class="head_logo" src="img/head_logo.png" />
+		    	<img alt="Auftragsverwaltung" class="head_logo" src="img/head.png" />
+		        <span id="lbl_progname"><?php echo $COPYRIGHT;?></span>
+		        <span id="lbl_customer"><?php echo $CUSTOMER;?></span>
+		        <span id="lbl_headline"><?php echo $PROGNAME;?></span>
 		    </div>
 		    <div id="content_main">
 			    <div id="navigation">
@@ -38,7 +41,7 @@ require_once 'php/config.php';
 			    </div>
 		    </div>
 		    <div id="footer">
-		    	&copy; 2013 by <a href="http://www.webdad.eu">WebDaD.eu</a>
+		    	&copy; 2013 by <a href="http://www.webdad.eu" target="_blank"><?php echo $AUTHOR;?></a>
 		    </div>
 	    </div>
 	    <script type="text/javascript">

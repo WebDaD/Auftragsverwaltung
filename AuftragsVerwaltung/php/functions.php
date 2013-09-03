@@ -1,16 +1,17 @@
 <?php
 function return_Auftragsnummer($id,$datum, $format){
 	$r = $format;
+	$t = explode(".",$datum);
 	if(strstr($format,"MM")!==false){
-		$month = explode(".",$datum)[1];
+		$month = $t[1];
 		$r = str_replace("MM", str_pad($month,2,"0",STR_PAD_LEFT), $r);
 	}
 	if(strstr($format,"YYYY")!==false){
-		$year = explode(".",$datum)[2];
+		$year = $t[2];
 		$r = str_replace("YYYY", $year, $r);
 	}
 	if(strstr($format,"YY")!==false){
-		$year = explode(".",$datum)[2];
+		$year = $t[2];
 		$r = str_replace("YY", substr($year,2,2), $r);
 	}
 	$length_of_id = substr_count($r, "#");

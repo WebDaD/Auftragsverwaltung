@@ -34,19 +34,54 @@ body
 		width:100%;
 		margin: 0 auto;
 		height: 100%;
+		background-image:url(../img/bg.png);
+        background-repeat:repeat-x;
 		}
 		#head
 			{
 			left:0px;
+			height: 159px;
 			margin-bottom:2%;
 			width: 100%;
 			}
 			.head_logo
 			 {
-			 width: 100%;
+			 width: 593px;
 			 left:0px;
-             height: 100px;
+             height: 159px;
 			 }
+			 #lbl_progname
+				 {
+				 z-index:9999;
+				 position:absolute;
+				 top:20px;
+				 left:90px;
+				 color:blue;
+				 font-size:12pt;
+				 font-family: "Arial";
+				 }
+			#lbl_customer
+				 {
+				 z-index:9999;
+				 position:absolute;
+				 top:80px;
+				 left:180px;
+				 color:white;
+				 font-size:24pt;
+				 font-weight:bold;
+				 font-family: "Arial";
+				 }
+			#lbl_headline
+				 {
+				 z-index:9999;
+				 position:absolute;
+				 top:110px;
+				 left:180px;
+				 color:white;
+				 font-size:24pt;
+				 font-weight:bold;
+				 font-family: "Arial";
+				 }
 		#content_main
 			{
 			white-space: nowrap;
