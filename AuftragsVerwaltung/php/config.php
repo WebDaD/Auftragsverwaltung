@@ -7,7 +7,7 @@
  * @author Dominik Sigmund
  */
 $PROGNAME="Auftragsverwaltung";
-$VERSION="0.3";
+$VERSION="0.7";
 $AUTHOR="Dominik Sigmund";
 $COPYRIGHT=$PROGNAME." v".$VERSION." (c) 2013 WebDaD.eu";
 
@@ -22,7 +22,7 @@ $oc["server"]="localhost";
 $oc["name"]="owncloud";
 $oc["user"]="owncloud";
 $oc["pass"]="owncloud";
-$oc["basepath"]="/share/MD0_DATA/Auftraege/admin/files/auftraege/";
+$oc["basepath"]="/share/MD0_DATA/Auftraege/admin/files/auftraege";
 $oc["http_link"]="http://192.168.1.18:2507/index.php/apps/files?dir=/Shared/auftraege/";
 
 //vars
