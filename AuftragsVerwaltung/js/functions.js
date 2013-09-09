@@ -116,9 +116,9 @@ function loadAuftragsnummer(){
 		cal = new JsDatePick({
 			useMode:2,
 			target:"nummer_datum",
-			limitToToday:true,
+			limitToToday:false,
 			cellColorScheme:"ocean_blue",
-			imgPath:"./img/",
+			imgPath:"../img/",
 			dateFormat:"%d.%m.%Y"
 				});
 		}
@@ -218,9 +218,9 @@ function loadOverviewEdit(id){
 		cal = new JsDatePick({
 			useMode:2,
 			target:"nummer_datum",
-			limitToToday:true,
+			limitToToday:false,
 			cellColorScheme:"ocean_blue",
-			imgPath:"./img/",
+			imgPath:"../img/",
 			dateFormat:"%d.%m.%Y"
 				});
 		}

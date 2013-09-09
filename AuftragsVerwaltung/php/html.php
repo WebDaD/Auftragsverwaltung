@@ -8,8 +8,8 @@ function html_createRadioButton($group, $value, $selected=false){
 		return "<input name=\"".$group."\" type=\"radio\" class=\"\" value=\"".$value."\"/>";
 	}
 }
-function html_createInputText($id, $value=""){
-	return "<input name=\"".$id."\" id=\"".$id."\" type=\"text\" class=\"\" value=\"".$value."\"/>";
+function html_createInputText($id, $value="", $subtext="text"){
+	return "<input name=\"".$id."\" id=\"".$id."\" type=\"".$subtext."\" class=\"\" value=\"".$value."\"/>";
 }
 function html_createInputBigText($id, $value=""){
 	return "<textarea name=\"".$id."\" id=\"".$id."\" rows=\"3\">".$value."</textarea>";

@@ -24,7 +24,7 @@ while($row=mysql_fetch_array($res)){
 	$o .= "	<td>".$row["adresse"]."</td>";
 	$o .= "	<td>".return_human_ag_status($row["status"])."</td>";
 	if($_SESSION["write"]=="1"){
-	$o .= "	<td>".html_createImageButton("edit_entry_".$row["id"], "edit_auftraggeber.png","Edit", "loadAuftragGeberEdit('".$row["id"]."', '".$row["name"]."')")."</td>";
+	$o .= "	<td>".html_createButton("edit_entry_".$row["id"],"Edit", "loadAuftragGeberEdit('".$row["id"]."', '".$row["name"]."')")."</td>";
 	}
 	else {
 		$o .= "	<td></td>";
@@ -32,7 +32,7 @@ while($row=mysql_fetch_array($res)){
 	$o .= "</tr>";
 }
 if($_SESSION["write"]=="1"){
-$o .= "	<tr><td>".html_createImageButton("new_entry", "new_auftraggeber.png","New", "newAuftragGeber()")."</td><td></td><tr>";
+$o .= "	<tr><td>".html_createButton("new_entry","New", "newAuftragGeber()")."</td><td></td><tr>";
 }
 $o .= "</table>";
 }

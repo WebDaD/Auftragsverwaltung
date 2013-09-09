@@ -31,10 +31,10 @@ while($row=mysql_fetch_array($res)){
 	$o .= "	<td>".$row["auftraggeber"]."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["status"]."\">".return_human_status($row["status"])."</td>";
 	if($_SESSION["write"]=="1"){
-		$o .= "	<td>".html_createImageButton("edit_auftrag_".$row["id"], "edit_auftrag.png","Edit", "loadOverviewEdit('".$row["id"]."')")." ".html_createImageButton("delete_auftrag_".$row["id"], "delete_auftrag.png","Delete", "loadOverviewDelete('".$row["id"]."', '".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."')")."</td>"; //TODO: add js functions here (edit, delete)
+		$o .= "	<td>".html_createButton("edit_auftrag_".$row["id"],"Edit", "loadOverviewEdit('".$row["id"]."')")." ".html_createButton("delete_auftrag_".$row["id"],"Delete", "loadOverviewDelete('".$row["id"]."', '".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."')")."</td>";
 	}
 	else if ($_SESSION["steuer"]=="1"){
-		$o .= "	<td>".html_createImageButton("status_auftrag_".$row["id"], "status_auftrag.png","Status", "loadOverviewStatus('".$row["id"]."')")."</td>";
+		$o .= "	<td>".html_createButton("status_auftrag_".$row["id"],"Status", "loadOverviewStatus('".$row["id"]."')")."</td>";
 	}
 	else {
 		$o .= "	<td></td>";
