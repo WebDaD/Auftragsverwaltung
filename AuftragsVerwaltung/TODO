@@ -30,7 +30,7 @@ Datenanalyse (v2)
  + auftraggeberzahlungen/stati
 
 
-INSTALLATION auf QNAP:
+INSTALLATION auf QNAP: <--- Into File!
 - OwnCloud aus dem Netz ziehen und auf MySQL installieren
 - oc/lib/users/database.php: 71, 104, 205 -> sha1
 - Admin: Create auftraege, create groups read,write,steuer
