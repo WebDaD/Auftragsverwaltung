@@ -24,7 +24,7 @@ $oc["name"]="owncloud";
 $oc["user"]="owncloud";
 $oc["pass"]="owncloud";
 $oc["basepath"]="/share/MD0_DATA/Auftraege/admin/files/auftraege/";
-$oc["http_link"]="http://192.168.1.18:37620/owncloud/index.php/apps/files?dir=/Shared/auftraege/";
+$oc["http_link"]="http://".$_SERVER["HTTP_HOST"]."/owncloud/index.php/apps/files?dir=/Shared/auftraege/";
 
 //vars
 $AUFTRAGSNUMMER_FORMAT = "####-MMYY";

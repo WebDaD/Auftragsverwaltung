@@ -160,11 +160,14 @@ function saveAuftragsNummer(){
 	 		 fd.append("nummer_auftraggeber",e("nummer_auftraggeber").value);
 	 	}
 	 	else if(ag_style=="rb_above"){
-	 		fd.append("ag_name",e("ag_name").value);
+	 		fd.append("ag_firma",e("ag_firma").value);
 	 	}
 	 	else {
-	 		fd.append("ag_name",e("ag_name_full").value);
-	 		fd.append("ag_adresse",e("ag_adresse").value);
+	 		fd.append("ag_firma_full",e("ag_firma_full").value);
+	 		fd.append("ag_zusatz_full",e("ag_zusatz_full").value);
+	 		fd.append("ag_strasse_full",e("ag_strasse_full").value);
+	 		fd.append("ag_plz_full",e("ag_plz_full").value);
+	 		fd.append("ag_ort_full",e("ag_ort_full").value);
 	 	}
 	 	
 	ajax.open("POST", "./php/nummer/saveDataSet.php", true);
@@ -206,6 +209,32 @@ function loadReports(){
 	ajax.setRequestHeader("Content-length", 0);
 	ajax.setRequestHeader("Connection", "close");
 	ajax.send(null); 
+	wait();
+}
+function loadOverviewDetails(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'Details';
+		e("output_text").innerHTML = ajax.responseText;
+		cal = new JsDatePick({
+			useMode:2,
+			target:"nummer_datum",
+			limitToToday:false,
+			cellColorScheme:"ocean_blue",
+			imgPath:"../img/",
+			dateFormat:"%d.%m.%Y"
+				});
+		}
+	};
+	var params = "id="+id;
+	ajax.open("POST", "./php/overview/loadOverviewDetails.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
 	wait();
 }
 function loadOverviewEdit(id){
@@ -433,7 +462,7 @@ function saveAuftragGeberEdit(id){
 		}
 		}
 	};
-	var params=p("ag_edit_name")+"&id="+id+"&"+p("ag_edit_adresse")+"&"+p("ag_edit_status");
+	var params=p("ag_edit_firma")+"&id="+id+"&"+p("ag_edit_zusatz")+"&"+p("ag_edit_status")+"&"+p("ag_edit_strasse")+"&"+p("ag_edit_plz")+"&"+p("ag_edit_ort");
 	ajax.open("POST", "./php/auftraggeber/saveDataSet.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", params.length);

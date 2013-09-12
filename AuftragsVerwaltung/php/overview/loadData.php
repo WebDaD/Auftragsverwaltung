@@ -5,7 +5,7 @@ require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 session_start();
 $dbid = database_connect($db);
-$sql = "SELECT a.id, a.datum, a.strasse,a.nummer, a.adresszusatz, a.plz, a.ort, g.name AS auftraggeber, a.status FROM auftraege a, auftraggeber g WHERE g.id=a.auftraggeber ORDER BY id DESC";
+$sql = "SELECT a.id, a.datum, a.strasse,a.nummer, a.adresszusatz, a.plz, a.ort, g.firma AS auftraggeber, a.status FROM auftraege a, auftraggeber g WHERE g.id=a.auftraggeber ORDER BY id DESC";
 $res = mysql_query($sql,$dbid);
 
 $o = "";
@@ -31,7 +31,7 @@ while($row=mysql_fetch_array($res)){
 	$o .= "	<td>".$row["auftraggeber"]."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["status"]."\">".return_human_status($row["status"])."</td>";
 	if($_SESSION["write"]=="1"){
-		$o .= "	<td>".html_createButton("edit_auftrag_".$row["id"],"Edit", "loadOverviewEdit('".$row["id"]."')")." ".html_createButton("delete_auftrag_".$row["id"],"Delete", "loadOverviewDelete('".$row["id"]."', '".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."')")."</td>";
+		$o .= "	<td>".html_createButton("details_auftrag_".$row["id"],"Detail", "loadOverviewDetails('".$row["id"]."')")." ".html_createButton("edit_auftrag_".$row["id"],"Edit", "loadOverviewEdit('".$row["id"]."')")." ".html_createButton("delete_auftrag_".$row["id"],"Delete", "loadOverviewDelete('".$row["id"]."', '".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."')")."</td>";
 	}
 	else if ($_SESSION["steuer"]=="1"){
 		$o .= "	<td>".html_createButton("status_auftrag_".$row["id"],"Status", "loadOverviewStatus('".$row["id"]."')")."</td>";

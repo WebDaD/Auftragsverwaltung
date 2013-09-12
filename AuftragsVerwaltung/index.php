@@ -8,6 +8,7 @@ require_once 'php/config.php';
 		<meta charset="utf8"/>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/jsDatePick_ltr.css" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
 		<script src="js/jsDatePick.full.1.3.js" type="text/javascript" ></script>
 		<script src="js/functions.js" type="text/javascript"></script>
 		<script src="js/gui.js" type="text/javascript"></script>

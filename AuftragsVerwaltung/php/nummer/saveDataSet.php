@@ -17,19 +17,21 @@ switch($rb){
 		$auftraggeber = getPar("nummer_auftraggeber", "Auftraggeber not set");
 		break;
 	case "rb_above":
-		$name = getPar("ag_name", "Auftraggeber-Name not set");
-		$adresse = $strasse." ".$nummer."\n".$plz." ".$ort."\n".$zusatz;
+		$firma = getPar("ag_firma", "Auftraggeber-Firma not set");
 		$dbid_t = database_connect($db);
-		$sql_t="INSERT INTO auftraggeber (name, adresse, status) VALUES('".$name."', '".$adresse."', 'S_1_OK')";
+		$sql_t="INSERT INTO auftraggeber (firma, zusatz, status, strasse, plz, ort) VALUES('".$firma."', '".$zusatz."', 'S_1_OK','".$strasse."', '".$plz."', '".$ort."')";
 		mysql_query($sql_t,$dbid_t);
 		$auftraggeber = mysql_insert_id($dbid_t);
 		mysql_close($dbid_t);
 		break;
 	case "rb_new":
-		$name = getPar("ag_name", "Auftraggeber-Name not set");
-		$adresse = getPar("ag_adresse", "Auftraggeber-adresse not set");
+		$firma = getPar("ag_name_full", "Auftraggeber-Name not set");
+		$zusatz = getPar("ag_zusatz_full", "Zusatz not set");
+		$strasse_t = getPar("ag_strasse_full", "Strasse not set");
+		$plz_t = getPar("ag_plz_full", "PLZ not set");
+		$ort_t = getPar("ag_ort_full", "Ort not set");
 		$dbid_t = database_connect($db);
-		$sql_t="INSERT INTO auftraggeber (name, adresse, status) VALUES('".$name."', '".$adresse."', 'S_1_OK')";
+		$sql_t="INSERT INTO auftraggeber (firma, zusatz, status, strasse, plz, ort) VALUES('".$firma."', '".$zusatz."', 'S_1_OK','".$strasse_t."', '".$plz_t."', '".$ort_t."')";
 		mysql_query($sql_t,$dbid_t);
 		$auftraggeber = mysql_insert_id($dbid_t);
 		mysql_close($dbid_t);

@@ -4,16 +4,19 @@ require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
 require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 session_start();
 $id = getPar("id", "ID not set");
-$name = getPar("ag_edit_name", "Name not set");
-$adresse = getPar("ag_edit_adresse", "Adresse not set");
+$firma = getPar("ag_edit_firma", "Firma not set");
+$zusatz = getPar("ag_edit_zusatz", "Zusatz not set");
 $status = getPar("ag_edit_status", "Status not set");
+$strasse = getPar("ag_edit_strasse", "Strasse not set");
+$plz = getPar("ag_edit_plz", "PLZ not set");
+$ort = getPar("ag_edit_ort", "Ort not set");
 if($_SESSION["write"]=="1"){
 	$dbid = database_connect($db);
 if($id=="0"){
-	$sql="INSERT INTO auftraggeber (name, adresse, status) VALUES('".$name."', '".$adresse."', '".$status."')";
+	$sql="INSERT INTO auftraggeber (firma, zusatz, status, strasse, plz, ort) VALUES('".$firma."', '".$zusatz."', '".$status."','".$strasse."', '".$plz."', '".$ort."')";
 }
 else {
-	$sql="UPDATE auftraggeber SET name='".$name."', adresse='".$adresse."', status='".$status."' WHERE id=".$id;
+	$sql="UPDATE auftraggeber SET firma='".$firma."', zusatz='".$zusatz."', status='".$status."', strasse='".$strasse."', plz='".$plz."', ort='".$ort."' WHERE id=".$id;
 }
 
 $check = mysql_query($sql,$dbid);
