@@ -221,7 +221,28 @@ body
 	color:green;
 	
 }
+
+.boxed{
+	border:1px solid black;
+}
+.inactive{
+	background-color: #808080;
+	color:#C0C0C0;
+}
+
 /* Sortable tables */
+table.sortable {
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table.sortable tr {
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table.sortable tr td{
+	border:1px solid black;
+	border-collapse: collapse;
+}
 table.sortable thead {
     background-color:#eee;
     color:#666666;

@@ -2,10 +2,10 @@
 //html functions (like createInput)
 function html_createRadioButton($group, $value, $selected=false){
 	if($selected){
-		return "<input name=\"".$group."\" type=\"radio\" class=\"\" value=\"".$value."\" checked=\"checked\"/>";
+		return "<input name=\"".$group."\" type=\"radio\" class=\"\" value=\"".$value."\" checked=\"checked\" onChange=\"rb_change(this)\"/>";
 	}
 	else {
-		return "<input name=\"".$group."\" type=\"radio\" class=\"\" value=\"".$value."\"/>";
+		return "<input name=\"".$group."\" type=\"radio\" class=\"\" value=\"".$value."\" onChange=\"rb_change(this)\"/>";
 	}
 }
 function html_createInputText($id, $value="", $subtext="text"){

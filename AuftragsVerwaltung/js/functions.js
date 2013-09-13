@@ -476,6 +476,15 @@ function saveAuftragGeberEdit(id){
  * 
  * 
  */
+function rb_change(radiobutton){
+	if(hasClass(radiobutton, "inactive")){
+		remClass(radiobutton, "inactive");
+	}
+	else{
+		addClass(radiobutton, "inactive");
+	}
+}
+
 function wait(){
 	e("output_text").innerHTML = "<img src=\"./img/waiting.gif\" alt=\"Waiting...\"/>";
 }
@@ -642,7 +651,12 @@ function hide(element){
 function setClass(element,className){
 	element.className = className;
 }
-
+function addClass(element,className){
+	element.className = element.className + className;
+}
+function remClass(element,className){
+	element.className = element.className.replace(className,'');
+}
 
 function clear(){
 	var elements = document.getElementsByTagName("input");
