@@ -476,12 +476,21 @@ function saveAuftragGeberEdit(id){
  * 
  * 
  */
-function rb_change(radiobutton){
-	if(hasClass(radiobutton, "inactive")){
-		remClass(radiobutton, "inactive");
+function rb_change(radiobutton){ //Only called on new one...
+	if(radiobutton.value=="rb_select"){
+		remClass("rb_select_t", "inactive");
+		addClass("rb_above_t", "inactive");
+		addClass("rb_new_t", "inactive");
 	}
-	else{
-		addClass(radiobutton, "inactive");
+	else if(radiobutton.value=="rb_above"){
+		addClass("rb_select_t", "inactive");
+		remClass("rb_above_t", "inactive");
+		addClass("rb_new_t", "inactive");
+	}
+	else { //rb_new
+		addClass("rb_select_t", "inactive");
+		addClass("rb_above_t", "inactive");
+		remClass("rb_new_t", "inactive");
 	}
 }
 
@@ -649,13 +658,17 @@ function hide(element){
 }
 
 function setClass(element,className){
-	element.className = className;
+	e(element).className = className;
 }
-function addClass(element,className){
-	element.className = element.className + className;
+function addClass(element,SelclassName){
+	if(!hasClass(e(element), SelclassName)){
+	e(element).className = e(element).className +" "+ SelclassName;
+	}
 }
-function remClass(element,className){
-	element.className = element.className.replace(className,'');
+function remClass(element,SelclassName){
+	if(hasClass(e(element), SelclassName)){
+	e(element).className = e(element).className.replace(SelclassName,"");
+	}
 }
 
 function clear(){
