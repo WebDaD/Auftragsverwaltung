@@ -43,6 +43,8 @@ function return_human_status($code){
 		case "S_4_CANCELED":return "Abgesagt";
 		case "S_5_GEZAHLT":return "Gezahlt";
 		case "S_6_MAHNUNG":return "Mahnung verschickt";
+		case "S_7_BERICHTERSTELLT":return "Bericht erstellt";
+		case "S_8_OFFEN":return "Offen / WVL";
 		default:return "Unbekannter Status";
 	}
 }
@@ -54,6 +56,8 @@ function return_stati(){
 	array_push($r, "S_4_CANCELED");
 	array_push($r, "S_5_GEZAHLT");
 	array_push($r, "S_6_MAHNUNG");
+	array_push($r, "S_7_BERICHTERSTELLT");
+	array_push($r, "S_8_OFFEN");
 	return $r;
 }
 function return_human_ag_status($code){
