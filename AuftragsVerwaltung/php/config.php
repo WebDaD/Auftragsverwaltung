@@ -8,7 +8,7 @@
  */
 $PROGNAME="Auftragsverwaltung";
 $CUSTOMER="Thermografie Berger";
-$VERSION="0.9";
+$VERSION="1.0";
 $AUTHOR="Dominik Sigmund";
 $COPYRIGHT=$PROGNAME." v".$VERSION." &copy; 2013 WebDaD.eu";
 
@@ -24,7 +24,9 @@ $oc["name"]="owncloud";
 $oc["user"]="owncloud";
 $oc["pass"]="owncloud";
 $oc["basepath"]="/share/MD0_DATA/Auftraege/admin/files/auftraege/";
+$oc["archive"]="/share/MD0_DATA/Auftraege/admin/files/archiv/";
 $oc["http_link"]="http://".$_SERVER["HTTP_HOST"]."/owncloud/index.php/apps/files?dir=/Shared/auftraege/";
+$oc["archive_link"]="http://".$_SERVER["HTTP_HOST"]."/owncloud/index.php/apps/files?dir=/Shared/archiv/";
 
 //vars
 $AUFTRAGSNUMMER_FORMAT = "####-MMYY";

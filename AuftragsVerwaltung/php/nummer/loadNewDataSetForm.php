@@ -49,7 +49,7 @@ $output .= "					<td>".html_createRadioButton("nummer_rb", "rb_new")."</td>";
 $output .= "					<td class=\"boxed inactive\" id=\"rb_new_t\">";
 $output .= "						<table>	";		
 $output .= "							<tr>	";
-$output .= "								<td>Firma</td>";
+$output .= "								<td>Firma/Name</td>";
 $output .= "								<td>".html_createInputText("ag_firma_full")."</td>";
 $output .= "							</tr>	";
 $output.="								<tr>";

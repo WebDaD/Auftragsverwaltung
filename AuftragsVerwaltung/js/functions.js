@@ -14,6 +14,7 @@ function navigateTo(page){
 	switch(page){
 	case "auftragsnummer":loadAuftragsnummer();break;
 	case "overview":loadOverview();break;
+	case "archiev":loadArchive();break;
 	case "auftraggeber":loadAuftraggeber();break;
 	case "login":loadLogin();break;
 	case "reports":loadReports();break;
@@ -188,6 +189,24 @@ function loadOverview(){
 		}
 	};
 	ajax.open("POST", "./php/overview/loadData.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", 0);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(null); 
+	wait();
+}
+function loadArchive(){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'Archiv Aufträge';
+		e("output_text").innerHTML = ajax.responseText;
+		sorttable.makeSortable(e("table_archiv"));
+		}
+	};
+	ajax.open("POST", "./php/archive/loadData.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", 0);
 	ajax.setRequestHeader("Connection", "close");

@@ -1,13 +1,37 @@
-E-Mail an Armin, detlef (mail@)
-
-testdaten löschen
-
-user für sabine anlegen
+Wenn Auftrag nach "Bezahlt" --> kopiere Dateien in Archiv
 
 
+NAS: Sicherung Mysql-DB???
+NAS: replikation?
+
+
+Log-Datenbank -> Login, Datetime, auftragsnummer, von, nach
+	-> Anzeige in "Auftragsliste" -> Letztes Datum von Auftragsnummer
+	-> Befüllen bei "changeStatus", "edit"(only on status change), "new"(0>S_1)
+	
+	
+	
+	
+
+		Wenn Privat -> Eigene Liste (private)
+BUG: Auftragsnummer -> Privat -> name not set
+BUG: Auftragsnummer -> Datum -> Prüfung, dass nur ein Datum drinne sein darf
+ERG: Auftragsnummer -> Alle Felder -> Prüfung ob leer (bei Pflichtfeldern)
+ERG: Auftragsnummer -> Notizen als neues TextFeld
+ERG: Auftragsnummer -> dataset.xml Auftraggeberdaten !!!
 
 
 
+Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner (suche bericht.xml, dataset.xml)
+
+
+
+
+Mail:
+	Archiv: Shared/archiv
+	Termin mit Sabine
+	Termin für den Kalender
+	Auftragsverwaltung: Punkt Archive und Aufträge getrennt
 
 
 Doks:
