@@ -43,6 +43,8 @@ function return_human_status($code){
 		case "S_4_CANCELED":return "Abgesagt";
 		case "S_5_GEZAHLT":return "Gezahlt";
 		case "S_6_MAHNUNG":return "Mahnung verschickt";
+		case "S_7_BERICHTERSTELLT":return "Bericht erstellt";
+		case "S_8_OFFEN":return "Offen / WVL";
 		default:return "Unbekannter Status";
 	}
 }
@@ -54,6 +56,8 @@ function return_stati(){
 	array_push($r, "S_4_CANCELED");
 	array_push($r, "S_5_GEZAHLT");
 	array_push($r, "S_6_MAHNUNG");
+	array_push($r, "S_7_BERICHTERSTELLT");
+	array_push($r, "S_8_OFFEN");
 	return $r;
 }
 function return_human_ag_status($code){
@@ -86,5 +90,19 @@ function owncloud_connect($oc){
 	
 	mysql_query("SET NAMES utf8",$ocid);
 	return $ocid;
+}
+function logChange($auftrags_id, $new_status){
+	//TODO: Make this!
+	//IF new_status=='S_1_INARBEIT' >> insert new (old_status=="0")
+	//ELSE Load old status.
+		//IF old_status != new_status >> enter into log values (old_status, new_status, user(SESSION), datetime) //$_SESSION["uid"]
+		//ELSE return
+}
+function lastChange($auftrags_id){
+	//TODO: do lastChange
+	//Get from log for auftragsid latest change 
+}
+function return_Auftraggeber($auftraggeber_id){
+	//TODO: Make this, return Important Data as (<ort></ort><name></name><straße> //see database
 }
 ?>

@@ -1,14 +1,31 @@
-E-Mail an Armin, detlef (mail@)
-
-testdaten löschen
-
-user für sabine anlegen
+Wenn Auftrag nach "Bezahlt" --> kopiere Dateien in Archiv
 
 
+NAS: Sicherung Mysql-DB???
+NAS: replikation?
+
+	
+
+		Wenn Privat -> Eigene Liste (private)
+BUG: Auftragsnummer -> Privat -> name not set
+ERG: Auftragsnummer -> Datum -> Prüfung, dass nur ein Datum drinne sein darf
+ERG: Auftragsnummer -> Alle Felder -> Prüfung ob leer (bei Pflichtfeldern)
+ERG: Auftragsnummer -> dataset.xml Auftraggeberdaten !!!
+ERG: Auftragsliste  -> Neues Feld: LastChange (From Log)
+ERG: functions.php  -> Funktionen schreiben
+
+Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner (suche bericht.xml, dataset.xml)
 
 
 
-
+--->DOWNLOAD VON GITHUB, UPLOAD, TESTEN!
+Mail:
+	Archiv: Shared/archiv
+	Termin mit Sabine
+	Termin für den Kalender
+	Auftragsverwaltung: Punkt Archive und Aufträge getrennt
+	Neue Auftragsnummer: Feld Notizen
+	Neues Tool: Logging. ZU sehen vor allem in LastChange bei Auftragsverwaltung
 
 Doks:
 - Backup

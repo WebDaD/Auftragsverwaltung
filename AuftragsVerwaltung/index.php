@@ -29,9 +29,10 @@ require_once 'php/config.php';
 			    <div id="navigation">
 			    	<ul>
 			    		<li><a href="#" onclick="navigateTo('auftragsnummer');">Auftragsnummer</a></li>
-			    		<li><a href="#" onclick="navigateTo('overview');">Übersicht Aufträge</a></li>
-			    		<li><a href="#" onclick="navigateTo('auftraggeber');">Übersicht Auftraggeber</a></li>
-			    		<li><a href="#" onclick="navigateTo('reports');">Berichte</a></li>
+			    		<li><a href="#" onclick="navigateTo('overview');">Aufträge</a></li>
+			    		<li><a href="#" onclick="navigateTo('auftraggeber');">Auftraggeber</a></li>
+			    		<li><a href="#" onclick="navigateTo('archive');">Archiv</a></li>
+			    		<li><a href="#" onclick="navigateTo('reports');">Analysen</a></li>
 			    		<li id="logout_button"><a href="#" onclick="logout();">Logout</a></li>
 			    	</ul>
 			    </div>

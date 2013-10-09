@@ -13,14 +13,16 @@ $ort = getPar("nummer_ort", "Ort not set");
 $auftraggeber = getPar("nummer_auftraggeber", "Auftraggeber not set");
 $zusatz = getPar("nummer_zusatz", "Zusatz not set");
 $status = getPar("nummer_status", "Status not set");
+$notes = getPar("nummer_notes", "Notes not set");
 
 $old_datum = $datum;
 $dt = explode(".",$datum);
 $datum = $dt[2]."-".$dt[1]."-".$dt[0];
 
 if($_SESSION["write"]=="1"){
+	logChange($id, $status);
 	$dbid=database_connect($db);
-$sql="UPDATE auftraege SET datum='".$datum."', strasse='".$strasse."', plz='".$plz."', ort='".$ort."', auftraggeber='".$auftraggeber."', status='".$status."', nummer='".$nummer."', adresszusatz='".$zusatz."' WHERE id=".$id;
+$sql="UPDATE auftraege SET datum='".$datum."', strasse='".$strasse."', plz='".$plz."', ort='".$ort."', auftraggeber='".$auftraggeber."', status='".$status."', nummer='".$nummer."', adresszusatz='".$zusatz."', notizen='".$notes."' WHERE id=".$id;
 
 $check = mysql_query($sql,$dbid);
 if($check){
@@ -38,7 +40,8 @@ if($check){
 	fwrite($handle,"<plz>".$plz."</plz>");
 	fwrite($handle,"<ort>".$ort."</ort>");
 	fwrite($handle,"<adresszusatz>".$zusatz."</adresszusatz>\n");
-	fwrite($handle,"<auftraggeber>".$auftraggeber."</auftraggeber>");
+	fwrite($handle,"<auftraggeber>".return_Auftraggeber($auftraggeber)."</auftraggeber>");
+	fwrite($handle,"<notizen>".$notes."</notizen>\n");
 	fwrite($handle,"</dataset>");
 	fclose($handle);
 }

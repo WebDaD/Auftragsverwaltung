@@ -11,6 +11,7 @@ $plz = getPar("nummer_plz", "PLZ not set");
 $ort = getPar("nummer_ort", "Ort not set");
 $zusatz = getPar("nummer_zusatz", "Zusatz not set");
 $rb = getPar("nummer_rb", "No option selected");
+$notes = getPar("nummer_notes", "Notes not set");
 
 switch($rb){
 	case "rb_select":
@@ -45,7 +46,7 @@ $dt = explode(".",$datum);
 $datum = $dt[2]."-".$dt[1]."-".$dt[0];
 if($_SESSION["write"]=="1"){
 	$dbid = database_connect($db);
-	$sql="INSERT INTO auftraege (datum, strasse,nummer, plz, ort, auftraggeber, status, adresszusatz)
+	$sql="INSERT INTO auftraege (datum, strasse,nummer, plz, ort, auftraggeber, status, adresszusatz, notizen)
 				VALUES (
 				'".$datum."',
 				'".$strasse."',
@@ -54,11 +55,14 @@ if($_SESSION["write"]=="1"){
 				'".$ort."',
 				'".$auftraggeber."',	
 				'S_1_INARBEIT',
-				'".$zusatz."'	
+				'".$zusatz."',
+				'".$notes."'			
 			);";
 	$check = mysql_query($sql,$dbid);
 	if($check){
-		$aid = return_Auftragsnummer(mysql_insert_id($dbid), $old_datum, $AUFTRAGSNUMMER_FORMAT);
+		$nid=mysql_insert_id($dbid);
+		$aid = return_Auftragsnummer($nid, $old_datum, $AUFTRAGSNUMMER_FORMAT);
+		logChange($nid, 'S_1_INARBEIT');
 		$output="";
 		$output.="Auftragsnummer ist: <br/>";
 		$output.="<b>".$aid."</b>";
@@ -74,7 +78,8 @@ if($_SESSION["write"]=="1"){
 		fwrite($handle,"<plz>".$plz."</plz>\n");
 		fwrite($handle,"<ort>".$ort."</ort>\n");
 		fwrite($handle,"<adresszusatz>".$zusatz."</adresszusatz>\n");
-		fwrite($handle,"<auftraggeber>".$auftraggeber."</auftraggeber>\n");
+		fwrite($handle,"<auftraggeber>".return_Auftraggeber($auftraggeber)."</auftraggeber>\n");
+		fwrite($handle,"<notizen>".$notes."</notizen>\n");
 		fwrite($handle,"</dataset>");
 		fclose($handle);
 		
