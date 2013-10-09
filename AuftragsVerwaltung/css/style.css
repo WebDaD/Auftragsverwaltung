@@ -1,0 +1,250 @@
+@CHARSET "ISO-8859-1";
+.button{
+	cursor: pointer !important;
+	border:1px solid black;
+	background-color:#C0C0C0;
+	color:black;
+	padding: 5px;
+	width:140px;
+	height:12px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px; 
+	display:inline-block;
+	vertical-align: middle;
+	line-height:15px;
+	text-align:center;
+	font-weight: normal;
+}
+.button:hover {
+	background-color:black;
+	color:#C0C0C0;
+}
+
+body
+    {
+        left:0px;
+        margin-left:0px;
+        padding-left:0px;
+        margin-right:0px;
+        padding-right:0px;
+        font-family: "Arial";
+    }
+#container
+		{
+		width:100%;
+		margin: 0 auto;
+		height: 100%;
+		background-image:url(../img/bg.png);
+        background-repeat:repeat-x;
+		}
+		#head
+			{
+			left:0px;
+			height: 159px;
+			margin-bottom:2%;
+			width: 100%;
+			}
+			.head_logo
+			 {
+			 width: 593px;
+			 left:0px;
+             height: 159px;
+			 }
+			 #lbl_progname
+				 {
+				 z-index:999;
+				 position:absolute;
+				 top:20px;
+				 left:90px;
+				 color:blue;
+				 font-size:12pt;
+				 font-family: "Arial";
+				 }
+			#lbl_customer
+				 {
+				 z-index:999;
+				 position:absolute;
+				 top:80px;
+				 left:180px;
+				 color:white;
+				 font-size:24pt;
+				 font-weight:bold;
+				 font-family: "Arial";
+				 }
+			#lbl_headline
+				 {
+				 z-index:999;
+				 position:absolute;
+				 top:110px;
+				 left:180px;
+				 color:white;
+				 font-size:24pt;
+				 font-weight:bold;
+				 font-family: "Arial";
+				 }
+		#content_main
+			{
+			white-space: nowrap;
+			}
+			#navigation
+				{
+				width:15%;
+				margin-left:15px;
+				float:left;
+				border-right: 1px solid #C0C0C0;
+				margin-right:10px;
+				}
+				#navigation ul
+					{
+					list-style-type: none;
+					padding: 0;
+					padding-left:10px;
+					margin-left: 0;
+					}
+				#navigation ul li
+					{
+					margin-bottom:10px;
+					}
+				#navigation ul li a
+					{
+					text-decoration: none;
+					color:black;
+					}
+				#navigation ul li a:hover
+					{
+					color:red;
+					}
+			#content
+				{
+				display:block;
+				height:75%;
+				width:75%;
+				left:205px;
+				float:clear;
+				float:none;
+				overflow:auto !important;
+				padding-left:10px;
+				}
+			#footer{
+			position:absolute;
+			right:1px;
+			bottom:1px;
+			color:gray;
+			font-size: x-small;
+			}
+			
+#popup {
+	position:fixed;
+	visibility:visible;
+	opacity:1;
+	left:5%;
+	top:5%;
+	display:inline-block;
+	z-index: 9999;
+	background-color: #FFF;
+	color:black;
+	margin: 0 auto;
+	padding:20px;
+	border:2px solid black;
+	-webkit-border-radius: 10px 0px 10px 10px;
+	border-radius: 10px 0px 10px 10px; 
+}
+#popup h2 {
+	text-indent: 10px;
+}
+#popup * select, #popup * input {
+	width:150px;
+}
+#page-cover { 
+	display:inline-block;
+	visibility:visible;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    -webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+#popup_close {
+	position:absolute;
+	top:-10px;
+	right:-10px;
+}
+
+/**
+ * Element is hidden
+ * 
+ * @version 1.0
+ * @since 0.1
+ * @author Dominik Sigmund
+*/
+.hidden {
+	visibility:hidden !important;
+	opacity:0 !important;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+/**
+ * Element has an Error
+ * 
+ * @version 1.0
+ * @since 0.1
+ * @author Dominik Sigmund
+*/
+.error {
+	border:1px solid red;
+	background-color:#FF7256;
+	color:red;
+	
+}
+
+/**
+ * Element is Good
+ * 
+ * @version 1.0
+ * @since 0.1
+ * @author Dominik Sigmund
+*/
+.info {
+	border:1px solid green;
+	background-color:light-green;
+	color:green;
+	
+}
+
+.boxed{
+	border:1px solid black;
+}
+.inactive{
+	background-color: #808080 !important;
+	color:#C0C0C0 !important;
+}
+/* Sortable tables */
+table.sortable {
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table.sortable tr {
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table.sortable tr td{
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
