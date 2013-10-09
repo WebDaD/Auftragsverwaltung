@@ -13,7 +13,7 @@ $ort = getPar("ag_edit_ort", "Ort not set");
 if($_SESSION["write"]=="1"){
 	$dbid = database_connect($db);
 if($id=="0"){
-	$sql="INSERT INTO auftraggeber (firma, zusatz, status, strasse, plz, ort) VALUES('".$firma."', '".$zusatz."', '".$status."','".$strasse."', '".$plz."', '".$ort."')";
+	$sql="INSERT INTO auftraggeber (firma, zusatz, status, strasse, plz, ort, privat) VALUES('".$firma."', '".$zusatz."', '".$status."','".$strasse."', '".$plz."', '".$ort."',0)";
 }
 else {
 	$sql="UPDATE auftraggeber SET firma='".$firma."', zusatz='".$zusatz."', status='".$status."', strasse='".$strasse."', plz='".$plz."', ort='".$ort."' WHERE id=".$id;

@@ -92,17 +92,106 @@ function owncloud_connect($oc){
 	return $ocid;
 }
 function logChange($auftrags_id, $new_status){
-	//TODO: Make this!
-	//IF new_status=='S_1_INARBEIT' >> insert new (old_status=="0")
-	//ELSE Load old status.
-		//IF old_status != new_status >> enter into log values (old_status, new_status, user(SESSION), datetime) //$_SESSION["uid"]
-		//ELSE return
+	$dbid = database_connect($db);
+	if($new_status=='S_1_INARBEIT'){
+		$sql="INSERT INTO log (user, auftrag, old_status, new_status, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','0','S_1_INARBEIT', NOW())"; //TODO: check Statement
+		mysql_query($sql,$dbid);
+	}
+	else {
+		$sql = "SELECT status FROM auftrage WHERE id=".$auftrags_id;
+		$res = mysql_query($sql,$dbid);
+		$row = mysql_fetch_row($res);
+		$old_status = $row["status"];
+		if($old_status!=$new_status){
+			$sql="INSERT INTO log (user, auftrag, old_status, new_status, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','".$old_status."','".$new_status."', NOW())"; //TODO: check Statement
+			mysql_query($sql,$dbid);
+		}
+	}
+	mysql_close($dbid);
 }
 function lastChange($auftrags_id){
-	//TODO: do lastChange
-	//Get from log for auftragsid latest change 
+	$dbid = database_connect($db);
+	$sql = "SELECT datum FROM log WHERE auftrag=".$auftrags_id." ORDER BY datum DESC LIMIT 1"; //TODO: check statement
+	$res = mysql_query($sql,$dbid);
+	$row = mysql_fetch_row($res);
+	$datum = $row["status"];
+	mysql_close($dbid);
+	return $datum;
 }
 function return_Auftraggeber($auftraggeber_id){
-	//TODO: Make this, return Important Data as (<ort></ort><name></name><straße> //see database
+	$dbid = database_connect($db);
+	$data="";
+	$sql = "SELECT firma, zusatz, strasse, plz, ort, privat FROM auftraggeber WHERE id=".$auftraggeber_id." LIMIT 1"; //TODO: check statement
+	$res = mysql_query($sql,$dbid);
+	$row = mysql_fetch_row($res);
+	$data.="<name>".$row["firma"]."</name>";
+	$data.="<strasse>".$row["strasse"]."</strasse>";
+	$data.="<plz>".$row["plz"]."</plz>";
+	$data.="<ort>".$row["ort"]."</ort>";
+	$data.="<zusatz>".$row["zusatz"]."</zusatz>";
+	$data.="<privat>".$row["privat"]."</privat>";
+	mysql_close($dbid);
+	return data;
+}
+function copy2archive($id){ //TODO: Test with a backupped entry
+	if( !ini_get(‘safe_mode’) ){
+		set_time_limit(0);
+	}
+	$datum = getAuftragsDatum($id);
+	$aid = return_Auftragsnummer($id,$datum , $AUFTRAGSNUMMER_FORMAT);
+	$dt = explode(".", $datum);
+	
+	$old_path = $oc["basepath"].$aid."/";
+	$new_path = $oc["archive"].$dt[2]."/".$aid."/";
+	
+	mkdir($new_path);
+	
+	recurse_copy($old_path, $new_path);
+	
+	rrmdir($old_path);
+}
+function updateXMLStatus($id,$status){ //TODO: Test this by Changing a Status as steuer
+	$file = $oc["basepath"].return_Auftragsnummer($id,getAuftragsDatum($id) , $AUFTRAGSNUMMER_FORMAT)."/dataset.xml";
+	
+	$handle = fopen($file, "r+");
+	$content = fread($handle,filesize($file));
+	fclose($handle);
+	
+	$ct0 = explode("<status>", $content);
+	$ct1 = explode("</status>", $ct0[1]);
+	$content = $ct0[0].$status.$ct1[1];
+	
+	$handle = fopen($file,"w");
+	fwrite($handle,$content);
+	fclose($handle);
+}
+function getAuftragsDatum($auftrags_id){ //TODO: Test by using one of the above ones
+	$dbid = database_connect($db);
+	$sql = "SELECT datum FROM auftraege WHERE id=".$auftrags_id; //TODO: check statement
+	$res = mysql_query($sql,$dbid);
+	$row = mysql_fetch_row($res);
+	$dt = explode("-",$row["datum"]);
+	$datum = $dt[2].".".$dt[1].".".$dt[0];
+	mysql_close($dbid);
+	return $datum;
+}
+function recurse_copy($src,$dst) { //Copies content of folder into another one
+	$dir = opendir($src);
+	while(false !== ( $file = readdir($dir)) ) {
+		if (( $file != '.' ) && ( $file != '..' )) {
+			if ( is_dir($src . '/' . $file) ) {
+				recurse_copy($src . '/' . $file,$dst . '/' . $file);
+			}
+			else {
+				copy($src . '/' . $file,$dst . '/' . $file);
+			}
+		}
+	}
+	closedir($dir);
+}
+function rrmdir($dir) { //Deletes recursive a folder
+	foreach(glob($dir . '/*') as $file) {
+		if(is_dir($file)) rrmdir($file); else unlink($file);
+	} rmdir($dir);
 }
 ?>

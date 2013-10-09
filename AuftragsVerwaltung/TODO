@@ -1,31 +1,37 @@
-Wenn Auftrag nach "Bezahlt" --> kopiere Dateien in Archiv
-
-
 NAS: Sicherung Mysql-DB???
 NAS: replikation?
 
 	
+DATABASE: Alter auftraggeber add column privat, default 0
 
-		Wenn Privat -> Eigene Liste (private)
-BUG: Auftragsnummer -> Privat -> name not set
-ERG: Auftragsnummer -> Datum -> Prüfung, dass nur ein Datum drinne sein darf
-ERG: Auftragsnummer -> Alle Felder -> Prüfung ob leer (bei Pflichtfeldern)
-ERG: Auftragsnummer -> dataset.xml Auftraggeberdaten !!!
-ERG: Auftragsliste  -> Neues Feld: LastChange (From Log)
-ERG: functions.php  -> Funktionen schreiben
+
+--->DOWNLOAD VON GITHUB, UPLOAD, TESTEN!
+Mail: 
+	Archiv: Shared/archiv
+	Termin mit Sabine
+	Termin für den Kalender
+	Auftragsnummer: Pflichtfelder definieren (Vorschlag)
+	Bald noch Support-Dokumente
+	Offline-Berichtersteller-Planung (in Planung, Idee)
+	
+	(1.1)
+	Auftragsverwaltung: Punkt Archive und Aufträge getrennt
+	Neue Auftragsnummer: Feld Notizen verfügbar
+	Neue Auftragsnummer: Bei nutzung des unteren Feldes wird der Auftraggeber als Privat markiert und taucht in keiner Selektion auf.
+	Neues Tool: Logging. ZU sehen vor allem in LastChange bei Auftragsverwaltung
+	BUG: Auftragsnummer speichern -> Privat -> "name not set" gelöst
+	BUG: Auftragsnummer speichern -> Datumsfeld -> Nur noch ein Datum erlaubt.
+	Auftragsverwaltung: Daten werden ins Archive geschoben, sobald Status "Gezahlt" erreicht wird
+	Auftragsverwaltung: Änderung des Status als Steuer updated die dataset.xml
+	Sicherung: Auch der aktuelle Status wird in der Datei dataset.xml festgehalten
+
+
 
 Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner (suche bericht.xml, dataset.xml)
 
 
+CRON: Write log.xml nightly to auftraege
 
---->DOWNLOAD VON GITHUB, UPLOAD, TESTEN!
-Mail:
-	Archiv: Shared/archiv
-	Termin mit Sabine
-	Termin für den Kalender
-	Auftragsverwaltung: Punkt Archive und Aufträge getrennt
-	Neue Auftragsnummer: Feld Notizen
-	Neues Tool: Logging. ZU sehen vor allem in LastChange bei Auftragsverwaltung
 
 Doks:
 - Backup
@@ -66,8 +72,6 @@ INSTALLATION auf QNAP: <--- Into File!
 	- On Fail of Database
 	- On Fail of Reach of Web-Service
 
-SYNC-CLIENT WINDOWS:
- - Sync to https://192.168.1.18:8082/owncloud/
  
  RECREATE DATA:
  http://wiki.ubuntuusers.de/MySQL/Backup

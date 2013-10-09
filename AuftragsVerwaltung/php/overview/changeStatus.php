@@ -13,7 +13,10 @@ if($_SESSION["steuer"]=="1"){
 
 	$check = mysql_query($sql);
 	if($check){
-		
+		updateXML($id,$status);
+		if($status=="S_5_GEZAHLT"){
+			copy2archive($id);
+		}
 		echo "1";
 	}
 	else {

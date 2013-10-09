@@ -58,6 +58,9 @@ function loadLogin(){
 	wait();
 }
 function checkLogin(){
+	if(errorCheck("login_name"))return;
+	if(errorCheck("login_password"))return;
+	
 	var ajax = getAjax();
 	ajax.onreadystatechange = function()
 	{
@@ -132,6 +135,9 @@ function loadAuftragsnummer(){
 	wait();
 }
 function saveAuftragsNummer(){
+	
+	if(errorCheck("nummer_datum"))return;
+
 	var ajax = getAjax();
 	
 	ajax.onreadystatechange = function()
@@ -730,4 +736,35 @@ function clear(){
  */
 function hasClass(element, cls){
 	return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+}
+
+function errorCheck(element_name){
+	if(isEmpty(element_name)){
+		addClass(e(element_name),"error");
+		return false;
+	}
+	else {
+		if(element_name=="nummer_datum" && !holdsSingleDatum(element_name)){
+			addClass(e(element_name),"error");
+			return false;
+		}
+		remClass(e(element_name),"error");
+		return true;
+	}
+}
+function holdsSingleDatum(element_name){
+	var re1='((?:(?:[0-2]?\\d{1})|(?:[3][01]{1}))[-:\\/.](?:[0]?[1-9]|[1][012])[-:\\/.](?:(?:[1]{1}\\d{1}\\d{1}\\d{1})|(?:[2]{1}\\d{3})))(?![\\d])';
+	var p = new RegExp(re1,["i"]);
+    var m = p.exec(e(element_name.value));
+    if (m != null){
+    	return false;
+    }
+    else {
+    	return true;
+    }
+}
+
+function isEmpty(element_name){
+	if(e(element_name).value == "")return true;
+	else return true;
 }

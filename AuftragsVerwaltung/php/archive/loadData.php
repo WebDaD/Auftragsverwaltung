@@ -29,7 +29,7 @@ while($row=mysql_fetch_array($res)){
 	$o .= "	<td sorttable_customkey=\"".$row["plz"]."\">".$row["strasse"]." ".$row["nummer"]."<br/>".$row["plz"]." ".$row["ort"]."<br/>".$row["adresszusatz"]."</td>";
 	$o .= "	<td>".$row["auftraggeber"]."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["status"]."\">".return_human_status($row["status"])."</td>";
-	$o .= "	<td><a href=\"".$oc["http_link"].return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."\" target=\"_blank\">OwnCloud</a></td>";
+	$o .= "	<td><a href=\"".$oc["archive_link"]."/".$dt[0]."/".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."\" target=\"_blank\">OwnCloud</a></td>";
 	$o .= "</tr>";
 }
 

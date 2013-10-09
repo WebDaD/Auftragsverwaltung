@@ -42,8 +42,13 @@ if($check){
 	fwrite($handle,"<adresszusatz>".$zusatz."</adresszusatz>\n");
 	fwrite($handle,"<auftraggeber>".return_Auftraggeber($auftraggeber)."</auftraggeber>");
 	fwrite($handle,"<notizen>".$notes."</notizen>\n");
+	fwrite($handle,"<status>".$status."</status>");
 	fwrite($handle,"</dataset>");
 	fclose($handle);
+	
+	if($status=="S_5_GEZAHLT"){
+		copy2archive($id);
+	}
 }
 else {
 	echo "Fehler bei der Speicherung der Daten!<br/>".mysql_error();

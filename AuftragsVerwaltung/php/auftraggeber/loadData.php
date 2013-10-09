@@ -5,7 +5,7 @@ require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 session_start();
 $dbid = database_connect($db);
-$sql = "SELECT id, firma, zusatz, status, strasse, plz, ort FROM auftraggeber ORDER BY firma ASC";
+$sql = "SELECT id, firma, zusatz, status, strasse, plz, ort FROM auftraggeber WHERE privat=0 ORDER BY firma ASC";
 $res = mysql_query($sql,$dbid);
 
 $o = "";

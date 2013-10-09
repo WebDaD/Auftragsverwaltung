@@ -20,12 +20,16 @@ function html_createInputFile($id){
 function html_createInputPassword($id, $value=""){
 	return "<input name=\"".$id."\" id=\"".$id."\" type=\"password\" class=\"\" value=\"".$value."\"/>";
 }
-function html_createInputSelect($id,$db,$key_field,$value_field,$table ,$value=""){
+function html_createInputSelect($id,$db,$key_field,$value_field,$table ,$value="", $filter=""){
 	$output = "";
 	$output .= "<select name=\"".$id."\" id=\"".$id."\">";
 	require_once 'functions.php';
 	$dbid = database_connect($db);
 	$sql="SELECT ".$key_field.", ".$value_field." FROM ".$table;
+	if($filter!=""){
+		$sql .= " WHERE ".$filter;
+	}
+	$sql.= " ORDER BY ".$key_field." ASC";
 	$res = mysql_query($sql,$dbid);
 	while($row=mysql_fetch_array($res)){
 		if($row[$key_field]==$value){
