@@ -27,7 +27,7 @@ Mail:
 
 
 
-Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner (suche bericht.xml, dataset.xml)
+Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner, somehow stage (suche bericht.xml, dataset.xml)
 
 
 CRON: Write log.xml nightly to auftraege
