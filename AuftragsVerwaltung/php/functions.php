@@ -94,7 +94,7 @@ function owncloud_connect($oc){
 function logChange($auftrags_id, $new_status){
 	$dbid = database_connect($db);
 	if($new_status=='S_1_INARBEIT'){
-		$sql="INSERT INTO log (user, auftrag, old_status, new_status, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','0','S_1_INARBEIT', NOW())"; //TODO: check Statement
+		$sql="INSERT INTO log (login, auftrag, status_von, status_nach, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','0','S_1_INARBEIT', NOW())"; 
 		mysql_query($sql,$dbid);
 	}
 	else {
@@ -103,7 +103,7 @@ function logChange($auftrags_id, $new_status){
 		$row = mysql_fetch_row($res);
 		$old_status = $row["status"];
 		if($old_status!=$new_status){
-			$sql="INSERT INTO log (user, auftrag, old_status, new_status, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','".$old_status."','".$new_status."', NOW())"; //TODO: check Statement
+			$sql="INSERT INTO log (login, auftrag, status_von, status_nach, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','".$old_status."','".$new_status."', NOW())"; //TODO: check Statement
 			mysql_query($sql,$dbid);
 		}
 	}
@@ -111,17 +111,17 @@ function logChange($auftrags_id, $new_status){
 }
 function lastChange($auftrags_id){
 	$dbid = database_connect($db);
-	$sql = "SELECT datum FROM log WHERE auftrag=".$auftrags_id." ORDER BY datum DESC LIMIT 1"; //TODO: check statement
+	$sql = "SELECT DATE(datum) AS datum_only FROM log WHERE auftrag=".$auftrags_id." ORDER BY datum_only DESC LIMIT 1"; 
 	$res = mysql_query($sql,$dbid);
 	$row = mysql_fetch_row($res);
-	$datum = $row["status"];
+	$datum = $row["datum_only"];
 	mysql_close($dbid);
 	return $datum;
 }
 function return_Auftraggeber($auftraggeber_id){
 	$dbid = database_connect($db);
 	$data="";
-	$sql = "SELECT firma, zusatz, strasse, plz, ort, privat FROM auftraggeber WHERE id=".$auftraggeber_id." LIMIT 1"; //TODO: check statement
+	$sql = "SELECT firma, zusatz, strasse, plz, ort, privat FROM auftraggeber WHERE id=".$auftraggeber_id." LIMIT 1"; 
 	$res = mysql_query($sql,$dbid);
 	$row = mysql_fetch_row($res);
 	$data.="<name>".$row["firma"]."</name>";
@@ -167,7 +167,7 @@ function updateXMLStatus($id,$status){ //TODO: Test this by Changing a Status as
 }
 function getAuftragsDatum($auftrags_id){ //TODO: Test by using one of the above ones
 	$dbid = database_connect($db);
-	$sql = "SELECT datum FROM auftraege WHERE id=".$auftrags_id; //TODO: check statement
+	$sql = "SELECT datum FROM auftraege WHERE id=".$auftrags_id;
 	$res = mysql_query($sql,$dbid);
 	$row = mysql_fetch_row($res);
 	$dt = explode("-",$row["datum"]);

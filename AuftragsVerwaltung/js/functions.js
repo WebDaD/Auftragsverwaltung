@@ -58,8 +58,8 @@ function loadLogin(){
 	wait();
 }
 function checkLogin(){
-	if(errorCheck("login_name"))return;
-	if(errorCheck("login_password"))return;
+	if(hasError("login_name"))return;
+	if(hasError("login_password"))return;
 	
 	var ajax = getAjax();
 	ajax.onreadystatechange = function()
@@ -136,7 +136,7 @@ function loadAuftragsnummer(){
 }
 function saveAuftragsNummer(){
 	
-	if(errorCheck("nummer_datum"))return;
+	if(hasError("nummer_datum"))return;
 
 	var ajax = getAjax();
 	
@@ -505,19 +505,19 @@ function saveAuftragGeberEdit(id){
  */
 function rb_change(radiobutton){ //Only called on new one...
 	if(radiobutton.value=="rb_select"){
-		remClass("rb_select_t", "inactive");
-		addClass("rb_above_t", "inactive");
-		addClass("rb_new_t", "inactive");
+		remClass(e("rb_select_t"), "inactive");
+		addClass(e("rb_above_t"), "inactive");
+		addClass(e("rb_new_t"), "inactive");
 	}
 	else if(radiobutton.value=="rb_above"){
-		addClass("rb_select_t", "inactive");
-		remClass("rb_above_t", "inactive");
-		addClass("rb_new_t", "inactive");
+		addClass(e("rb_select_t"), "inactive");
+		remClass(e("rb_above_t"), "inactive");
+		addClass(e("rb_new_t"), "inactive");
 	}
 	else { //rb_new
-		addClass("rb_select_t", "inactive");
-		addClass("rb_above_t", "inactive");
-		remClass("rb_new_t", "inactive");
+		addClass(e("rb_select_t"), "inactive");
+		addClass(e("rb_above_t"), "inactive");
+		remClass(e("rb_new_t"), "inactive");
 	}
 }
 
@@ -685,16 +685,16 @@ function hide(element){
 }
 
 function setClass(element,className){
-	e(element).className = className;
+	element.className = className;
 }
 function addClass(element,SelclassName){
-	if(!hasClass(e(element), SelclassName)){
-	e(element).className = e(element).className +" "+ SelclassName;
+	if(!hasClass(element, SelclassName)){
+	element.className = element.className +" "+ SelclassName;
 	}
 }
 function remClass(element,SelclassName){
-	if(hasClass(e(element), SelclassName)){
-	e(element).className = e(element).className.replace(SelclassName,"");
+	if(hasClass(element, SelclassName)){
+	element.className = element.className.replace(SelclassName,"");
 	}
 }
 
@@ -738,18 +738,18 @@ function hasClass(element, cls){
 	return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 }
 
-function errorCheck(element_name){
+function hasError(element_name){
 	if(isEmpty(element_name)){
 		addClass(e(element_name),"error");
-		return false;
+		return true;
 	}
 	else {
 		if(element_name=="nummer_datum" && !holdsSingleDatum(element_name)){
 			addClass(e(element_name),"error");
-			return false;
+			return true;
 		}
 		remClass(e(element_name),"error");
-		return true;
+		return false;
 	}
 }
 function holdsSingleDatum(element_name){
@@ -766,5 +766,5 @@ function holdsSingleDatum(element_name){
 
 function isEmpty(element_name){
 	if(e(element_name).value == "")return true;
-	else return true;
+	else return false;
 }

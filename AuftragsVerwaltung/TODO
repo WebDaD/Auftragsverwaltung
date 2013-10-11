@@ -1,20 +1,6 @@
-NAS: Sicherung Mysql-DB???
-NAS: replikation?
-
-	
-DATABASE: Alter auftraggeber add column privat, default 0
-
-
---->DOWNLOAD VON GITHUB, UPLOAD, TESTEN!
-Mail: 
-	Archiv: Shared/archiv
-	Termin mit Sabine
-	Termin für den Kalender
-	Auftragsnummer: Pflichtfelder definieren (Vorschlag)
-	Bald noch Support-Dokumente
-	Offline-Berichtersteller-Planung (in Planung, Idee)
-	
+--->UPLOAD, TESTEN!
 	(1.1)
+	Fehlende LoginInfos
 	Auftragsverwaltung: Punkt Archive und Aufträge getrennt
 	Neue Auftragsnummer: Feld Notizen verfügbar
 	Neue Auftragsnummer: Bei nutzung des unteren Feldes wird der Auftraggeber als Privat markiert und taucht in keiner Selektion auf.

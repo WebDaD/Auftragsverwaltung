@@ -5,7 +5,7 @@ require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 session_start();
 $dbid = database_connect($db);
-$sql = "SELECT a.id, a.datum, a.strasse,a.nummer, a.adresszusatz, a.plz, a.ort, g.firma AS auftraggeber, a.status FROM auftraege a, auftraggeber g WHERE g.id=a.auftraggeber AND a.status NOT 'S_5_GEZAHLT' ORDER BY id DESC";
+$sql = "SELECT a.id, a.datum, a.strasse,a.nummer, a.adresszusatz, a.plz, a.ort, g.firma AS auftraggeber, a.status FROM auftraege a, auftraggeber g WHERE g.id=a.auftraggeber AND a.status != 'S_5_GEZAHLT' ORDER BY id DESC";
 $res = mysql_query($sql,$dbid);
 
 $o = "";
