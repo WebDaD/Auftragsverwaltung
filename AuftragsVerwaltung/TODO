@@ -11,7 +11,7 @@
 	Auftragsverwaltung: Änderung des Status als Steuer updated die dataset.xml
 	Sicherung: Auch der aktuelle Status wird in der Datei dataset.xml festgehalten
 
-
+LOGIN: COUNT ERROR for RETURN!
 
 Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner, somehow stage (suche bericht.xml, dataset.xml)
 
