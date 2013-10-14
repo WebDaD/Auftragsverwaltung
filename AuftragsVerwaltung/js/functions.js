@@ -1,5 +1,5 @@
 var cal;
-var timePeriodInMs = 4000;
+var timePeriodInMs = 40000;
 var loggedin = false;
 function init_page(){
 	navigateTo("overview");
@@ -14,7 +14,7 @@ function navigateTo(page){
 	switch(page){
 	case "auftragsnummer":loadAuftragsnummer();break;
 	case "overview":loadOverview();break;
-	case "archiev":loadArchive();break;
+	case "archive":loadArchive();break;
 	case "auftraggeber":loadAuftraggeber();break;
 	case "login":loadLogin();break;
 	case "reports":loadReports();break;
@@ -58,8 +58,10 @@ function loadLogin(){
 	wait();
 }
 function checkLogin(){
-	if(hasError("login_name"))return;
-	if(hasError("login_password"))return;
+	var errors=0;
+	if(hasError("login_name"))errors++;
+	if(hasError("login_password"))errors++;
+	if(errors>0){return;}
 	
 	var ajax = getAjax();
 	ajax.onreadystatechange = function()
@@ -349,7 +351,7 @@ function saveOverviewStatus(id){
 		else{
 			clear();
 			togglePopup();
-			loadOverview();
+			//loadOverview();
 			m_e(ajax.responseText);
 		}
 		}
@@ -361,7 +363,11 @@ function saveOverviewStatus(id){
 	ajax.setRequestHeader("Connection", "close");
 	ajax.send(params); 
 	wait();
-	popup_set("wait");
+	if(e("overview_status").value=='S_5_GEZAHLT'){
+		popup_set("copy");
+	}else {
+		popup_set("wait");
+	}
 }
 function saveOverviewEdit(id){
 	var ajax = getAjax();
@@ -389,7 +395,11 @@ function saveOverviewEdit(id){
 	ajax.setRequestHeader("Connection", "close");
 	ajax.send(params); 
 	wait();
-	popup_set("wait");
+	if(e("nummer_status").value=='S_5_GEZAHLT'){
+		popup_set("copy");
+	}else {
+		popup_set("wait");
+	}
 }
 function loadAuftraggeber(){
 	var ajax = getAjax();
@@ -629,6 +639,9 @@ function popup_set(html){
 	if(html=="wait"){
 		e("popup").innerHTML="<img src=\"./img/waiting.gif\" alt=\"Waiting...\"/>";
 	}
+	else if(html=="copy"){
+		e("popup").innerHTML="<img src=\"./img/waiting.gif\" alt=\"Waiting...\"/><br/>Please Wait, copying Files...";
+	}
 	else {
 		e("popup").innerHTML=html;
 	}
@@ -753,15 +766,13 @@ function hasError(element_name){
 	}
 }
 function holdsSingleDatum(element_name){
-	var re1='((?:(?:[0-2]?\\d{1})|(?:[3][01]{1}))[-:\\/.](?:[0]?[1-9]|[1][012])[-:\\/.](?:(?:[1]{1}\\d{1}\\d{1}\\d{1})|(?:[2]{1}\\d{3})))(?![\\d])';
-	var p = new RegExp(re1,["i"]);
-    var m = p.exec(e(element_name.value));
-    if (m != null){
-    	return false;
-    }
-    else {
-    	return true;
-    }
+	 var validformat=/^\d{2}\.\d{2}\.\d{4}$/; //Basic check for format validity
+		 if (!validformat.test(e(element_name).value)){
+			 return false;	 
+		 }
+		 else {
+			 return true;
+		 }
 }
 
 function isEmpty(element_name){

@@ -20,12 +20,14 @@ $dt = explode(".",$datum);
 $datum = $dt[2]."-".$dt[1]."-".$dt[0];
 
 if($_SESSION["write"]=="1"){
-	logChange($id, $status);
+	
 	$dbid=database_connect($db);
 $sql="UPDATE auftraege SET datum='".$datum."', strasse='".$strasse."', plz='".$plz."', ort='".$ort."', auftraggeber='".$auftraggeber."', status='".$status."', nummer='".$nummer."', adresszusatz='".$zusatz."', notizen='".$notes."' WHERE id=".$id;
 
+logChange($id, $status);
 $check = mysql_query($sql,$dbid);
 if($check){
+	
 	$aid = return_Auftragsnummer($id, $old_datum, $AUFTRAGSNUMMER_FORMAT);
 	$output="";
 	$output.="1";

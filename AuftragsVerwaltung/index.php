@@ -33,7 +33,7 @@ require_once 'php/config.php';
 			    		<li><a href="#" onclick="navigateTo('auftraggeber');">Auftraggeber</a></li>
 			    		<li><a href="#" onclick="navigateTo('archive');">Archiv</a></li>
 			    		<li><a href="#" onclick="navigateTo('reports');">Analysen</a></li>
-			    		<li id="logout_button"><a href="#" onclick="logout();">Logout</a></li>
+			    		<li id="logout_button"><a href="#" onclick="logout();">Ausloggen</a></li>
 			    	</ul>
 			    </div>
 			    <div id="content">

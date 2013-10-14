@@ -29,10 +29,10 @@ function html_createInputSelect($id,$db,$key_field,$value_field,$table ,$value="
 	if($filter!=""){
 		$sql .= " WHERE ".$filter;
 	}
-	$sql.= " ORDER BY ".$key_field." ASC";
+	$sql.= " ORDER BY ".$value_field." ASC";
 	$res = mysql_query($sql,$dbid);
 	while($row=mysql_fetch_array($res)){
-		if($row[$key_field]==$value){
+		if($value!="" && $row[$key_field]==$value){
 			$output .= "<option value=\"".$row[$key_field]."\" selected>".$row[$value_field]."</option>";
 		}
 		else {

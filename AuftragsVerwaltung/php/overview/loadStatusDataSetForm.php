@@ -12,7 +12,10 @@ $sql="SELECT status, id, datum FROM auftraege WHERE id=".$id;
 $res = mysql_query($sql,$dbid);
 $row = mysql_fetch_array($res);
 
-$aid = return_Auftragsnummer($row["id"], $row["datum"], $AUFTRAGSNUMMER_FORMAT);
+$dt = explode("-",$row["datum"]);
+$datum = $dt[2].".".$dt[1].".".$dt[0];
+
+$aid = return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT);
 $status = $row["status"];
 
 $output.="<table>";

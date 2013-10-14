@@ -92,48 +92,43 @@ function owncloud_connect($oc){
 	return $ocid;
 }
 function logChange($auftrags_id, $new_status){
-	$dbid = database_connect($db);
 	if($new_status=='S_1_INARBEIT'){
 		$sql="INSERT INTO log (login, auftrag, status_von, status_nach, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','0','S_1_INARBEIT', NOW())"; 
-		mysql_query($sql,$dbid);
+		mysql_query($sql);
 	}
 	else {
-		$sql = "SELECT status FROM auftrage WHERE id=".$auftrags_id;
-		$res = mysql_query($sql,$dbid);
+		$sql = "SELECT status FROM auftraege WHERE id=".$auftrags_id;
+		$res = mysql_query($sql);
 		$row = mysql_fetch_row($res);
-		$old_status = $row["status"];
-		if($old_status!=$new_status){
-			$sql="INSERT INTO log (login, auftrag, status_von, status_nach, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','".$old_status."','".$new_status."', NOW())"; //TODO: check Statement
-			mysql_query($sql,$dbid);
-		}
+		$old_status = $row[0];
+		$sql="INSERT INTO log (login, auftrag, status_von, status_nach, datum) VALUES ('".$_SESSION["uid"]."','".$auftrags_id."','".$old_status."','".$new_status."', NOW())"; //TODO: check Statement
+		mysql_query($sql);
 	}
-	mysql_close($dbid);
 }
 function lastChange($auftrags_id){
-	$dbid = database_connect($db);
 	$sql = "SELECT DATE(datum) AS datum_only FROM log WHERE auftrag=".$auftrags_id." ORDER BY datum_only DESC LIMIT 1"; 
-	$res = mysql_query($sql,$dbid);
+	$res = mysql_query($sql);
 	$row = mysql_fetch_row($res);
-	$datum = $row["datum_only"];
-	mysql_close($dbid);
+	$datum = $row[0];
 	return $datum;
 }
 function return_Auftraggeber($auftraggeber_id){
-	$dbid = database_connect($db);
 	$data="";
 	$sql = "SELECT firma, zusatz, strasse, plz, ort, privat FROM auftraggeber WHERE id=".$auftraggeber_id." LIMIT 1"; 
-	$res = mysql_query($sql,$dbid);
+	$res = mysql_query($sql);
 	$row = mysql_fetch_row($res);
-	$data.="<name>".$row["firma"]."</name>";
-	$data.="<strasse>".$row["strasse"]."</strasse>";
-	$data.="<plz>".$row["plz"]."</plz>";
-	$data.="<ort>".$row["ort"]."</ort>";
-	$data.="<zusatz>".$row["zusatz"]."</zusatz>";
-	$data.="<privat>".$row["privat"]."</privat>";
-	mysql_close($dbid);
-	return data;
+	$data.="<name>".$row[0]."</name>";
+	$data.="<strasse>".$row[2]."</strasse>";
+	$data.="<plz>".$row[3]."</plz>";
+	$data.="<ort>".$row[4]."</ort>";
+	$data.="<zusatz>".$row[1]."</zusatz>";
+	$data.="<privat>".$row[5]."</privat>";
+	return $data;
 }
 function copy2archive($id){ //TODO: Test with a backupped entry
+	global $oc;
+	global $AUFTRAGSNUMMER_FORMAT;
+	
 	if( !ini_get(‘safe_mode’) ){
 		set_time_limit(0);
 	}
@@ -149,10 +144,12 @@ function copy2archive($id){ //TODO: Test with a backupped entry
 	recurse_copy($old_path, $new_path);
 	
 	rrmdir($old_path);
+	return;
 }
 function updateXMLStatus($id,$status){ //TODO: Test this by Changing a Status as steuer
+	global $AUFTRAGSNUMMER_FORMAT;
+	global $oc;
 	$file = $oc["basepath"].return_Auftragsnummer($id,getAuftragsDatum($id) , $AUFTRAGSNUMMER_FORMAT)."/dataset.xml";
-	
 	$handle = fopen($file, "r+");
 	$content = fread($handle,filesize($file));
 	fclose($handle);
@@ -166,13 +163,11 @@ function updateXMLStatus($id,$status){ //TODO: Test this by Changing a Status as
 	fclose($handle);
 }
 function getAuftragsDatum($auftrags_id){ //TODO: Test by using one of the above ones
-	$dbid = database_connect($db);
 	$sql = "SELECT datum FROM auftraege WHERE id=".$auftrags_id;
-	$res = mysql_query($sql,$dbid);
+	$res = mysql_query($sql);
 	$row = mysql_fetch_row($res);
-	$dt = explode("-",$row["datum"]);
+	$dt = explode("-",$row[0]);
 	$datum = $dt[2].".".$dt[1].".".$dt[0];
-	mysql_close($dbid);
 	return $datum;
 }
 function recurse_copy($src,$dst) { //Copies content of folder into another one

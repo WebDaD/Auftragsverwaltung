@@ -1,23 +1,10 @@
---->UPLOAD, TESTEN!
-	(1.1)
-	Fehlende LoginInfos
-	Auftragsverwaltung: Punkt Archive und Aufträge getrennt
-	Neue Auftragsnummer: Feld Notizen verfügbar
-	Neue Auftragsnummer: Bei nutzung des unteren Feldes wird der Auftraggeber als Privat markiert und taucht in keiner Selektion auf.
-	Neues Tool: Logging. ZU sehen vor allem in LastChange bei Auftragsverwaltung
-	BUG: Auftragsnummer speichern -> Privat -> "name not set" gelöst
-	BUG: Auftragsnummer speichern -> Datumsfeld -> Nur noch ein Datum erlaubt.
-	Auftragsverwaltung: Daten werden ins Archive geschoben, sobald Status "Gezahlt" erreicht wird
-	Auftragsverwaltung: Änderung des Status als Steuer updated die dataset.xml
-	Sicherung: Auch der aktuelle Status wird in der Datei dataset.xml festgehalten
-
-LOGIN: COUNT ERROR for RETURN!
 
 Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner, somehow stage (suche bericht.xml, dataset.xml)
 
 
 CRON: Write log.xml nightly to auftraege
-
+CRON: MySQL-Backup not working
+CRON: Backup-NAS: Read in dumped Data
 
 Doks:
 - Backup

@@ -17,6 +17,7 @@ $o .= "		<th>Datum</th>";
 $o .= "		<th>Adresse</th>";
 $o .= "		<th>Auftraggeber</th>";
 $o .= "		<th>Status</th>";
+$o .= "		<th>Geändert</th>";
 $o .= "		<th>*</th>";
 $o .= "		<th>Files</th>";
 $o .= "	</tr>";
@@ -24,12 +25,15 @@ $o .= "	</tr>";
 while($row=mysql_fetch_array($res)){
 	$dt = explode("-",$row["datum"]);
 	$datum = $dt[2].".".$dt[1].".".$dt[0];
-	$o .= "<tr>";
+	$lc = explode("-",lastChange( $row["id"]));
+	$change = $lc[2].".".$lc[1].".".$lc[0];
+		$o .= "<tr>";
 	$o .= "	<td>".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["datum"]."\">".$datum."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["plz"]."\">".$row["strasse"]." ".$row["nummer"]."<br/>".$row["plz"]." ".$row["ort"]."<br/>".$row["adresszusatz"]."</td>";
 	$o .= "	<td>".$row["auftraggeber"]."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["status"]."\">".return_human_status($row["status"])."</td>";
+	$o .= "	<td sorttable_customkey=\"".$change."\">".$change."</td>";
 	if($_SESSION["write"]=="1"){
 		$o .= "	<td>".html_createButton("details_auftrag_".$row["id"],"Detail", "loadOverviewDetails('".$row["id"]."')")." ".html_createButton("edit_auftrag_".$row["id"],"Edit", "loadOverviewEdit('".$row["id"]."')")." ".html_createButton("delete_auftrag_".$row["id"],"Delete", "loadOverviewDelete('".$row["id"]."', '".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."')")."</td>";
 	}
