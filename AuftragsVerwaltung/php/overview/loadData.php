@@ -30,7 +30,7 @@ while($row=mysql_fetch_array($res)){
 		$o .= "<tr>";
 	$o .= "	<td>".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["datum"]."\">".$datum."</td>";
-	$o .= "	<td sorttable_customkey=\"".$row["plz"]."\">".$row["strasse"]." ".$row["nummer"]."<br/>".$row["plz"]." ".$row["ort"]."<br/>".$row["adresszusatz"]."</td>";
+	$o .= "	<td sorttable_customkey=\"".$row["ort"]."\">".$row["strasse"]." ".$row["nummer"]."<br/>".$row["plz"]." ".$row["ort"]."<br/>".$row["adresszusatz"]."</td>";
 	$o .= "	<td>".$row["auftraggeber"]."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["status"]."\">".return_human_status($row["status"])."</td>";
 	$o .= "	<td sorttable_customkey=\"".$change."\">".$change."</td>";

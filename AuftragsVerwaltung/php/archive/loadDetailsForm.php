@@ -1,0 +1,61 @@
+<?php
+//output: closebutton, title(h3), content(old val, new val), cancel, save
+require_once( realpath( dirname( __FILE__ ) ).'/../config.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
+require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
+$output="";
+$output .= html_popup_closeButton();
+$output .= "<h3>Details</h3>";
+$id = getPar("id", "No ID given.");
+$dbid = database_connect($db);
+$sql="SELECT datum, strasse, plz, ort, auftraggeber, status, nummer, adresszusatz, notizen FROM auftraege WHERE id=".$id;
+$res = mysql_query($sql, $dbid);
+$row = mysql_fetch_array($res);
+
+$dt = explode("-",$row["datum"]);
+$datum = $dt[2].".".$dt[1].".".$dt[0];
+
+$output.="<table>";
+$output .= "	<tr>";
+$output .= "		<td>Datum</td>";
+$output .= "		<td>".$datum."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Straße</td>";
+$output .= "		<td>".$row["strasse"]."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Nummer</td>";
+$output .= "		<td>".$row["nummer"]."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>PLZ</td>";
+$output .= "		<td>".$row["plz"]."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Ort</td>";
+$output .= "		<td>".$row["ort"]."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Adresszusatz</td>";
+$output .= "		<td>".$row["adresszusatz"]."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Auftraggeber</td>";
+$output .= "		<td>".return_AuftraggeberName($row["auftraggeber"])."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Status</td>";
+$output .= "		<td>".return_human_status($row["status"])."</td>";
+$output .= "	</tr>";
+$output .= "	<tr>";
+$output .= "		<td>Notizen</td>";
+$output .= "		<td>".$row["notizen"]."</td>";
+$output .= "	</tr>";
+$output.="	<tr>";
+$output.="		<td>".html_createButton("ov_edit_close", "Close", "togglePopup();")."</td>";
+$output.="	</tr>";
+$output.="</table>";
+mysql_close($dbid);
+echo $output;
+?>

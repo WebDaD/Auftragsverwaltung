@@ -244,8 +244,27 @@ table.sortable tr td{
 	border-collapse: collapse;
 }
 table.sortable thead {
-    background-color:#eee;
+    background-color:#b3b3b3;
     color:#666666;
     font-weight: bold;
     cursor: default;
 }
+table.sortable thead tr {
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table.sortable thead tr th{
+	border:1px solid black;
+	border-collapse: collapse;
+}
+/**
+ * Alternating Row Colors
+ * 
+ * @version 1.0
+ * @since 0.2
+ * @author Dominik Sigmund
+*/
+table.sortable tr:nth-child(even) {
+background-color: #eee;
+color: black;
+} 

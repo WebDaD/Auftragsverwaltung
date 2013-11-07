@@ -1,3 +1,7 @@
+1.2:
+	Archiv hat Details (mit Notizen)
+	Tabellen mit Farbigen Zeilen
+	Sortierung nach Ort statt PLZ
 
 Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner, somehow stage (suche bericht.xml, dataset.xml)
 

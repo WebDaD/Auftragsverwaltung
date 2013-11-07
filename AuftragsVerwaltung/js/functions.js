@@ -213,7 +213,7 @@ function loadArchive(){
 		{
 		e("output_header").innerHTML = 'Archiv Aufträge';
 		e("output_text").innerHTML = ajax.responseText;
-		sorttable.makeSortable(e("table_archiv"));
+		sorttable.makeSortable(e("table_auftraege"));
 		}
 	};
 	ajax.open("POST", "./php/archive/loadData.php", true);
@@ -222,6 +222,24 @@ function loadArchive(){
 	ajax.setRequestHeader("Connection", "close");
 	ajax.send(null); 
 	wait();
+}
+function loadArchiveDetails(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		popup_set(ajax.responseText);
+		}
+	};
+	var params = "id="+id;
+	ajax.open("POST", "./php/archive/loadDetailsForm.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	togglePopup();
+	popup_set("wait");
 }
 function loadReports(){
 	var ajax = getAjax();

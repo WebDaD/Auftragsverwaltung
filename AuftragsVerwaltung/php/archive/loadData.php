@@ -18,6 +18,7 @@ $o .= "		<th>Adresse</th>";
 $o .= "		<th>Auftraggeber</th>";
 $o .= "		<th>Status</th>";
 $o .= "		<th>Files</th>";
+$o .= "		<th>*</th>";
 $o .= "	</tr>";
 
 while($row=mysql_fetch_array($res)){
@@ -30,6 +31,7 @@ while($row=mysql_fetch_array($res)){
 	$o .= "	<td>".$row["auftraggeber"]."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["status"]."\">".return_human_status($row["status"])."</td>";
 	$o .= "	<td><a href=\"".$oc["archive_link"].$dt[0]."/".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."\" target=\"_blank\">OwnCloud</a></td>";
+	$o .= "	<td>".html_createButton("details_auftrag_".$row["id"],"Details", "loadArchiveDetails('".$row["id"]."')")."</td>";
 	$o .= "</tr>";
 }
 

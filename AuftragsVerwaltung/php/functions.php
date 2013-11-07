@@ -125,6 +125,14 @@ function return_Auftraggeber($auftraggeber_id){
 	$data.="<privat>".$row[5]."</privat>";
 	return $data;
 }
+function return_AuftraggeberName($auftraggeber_id){
+	$data="";
+	$sql = "SELECT firma FROM auftraggeber WHERE id=".$auftraggeber_id." LIMIT 1";
+	$res = mysql_query($sql);
+	$row = mysql_fetch_row($res);
+	$data.=$row[0];
+	return $data;
+}
 function copy2archive($id){
 	global $oc;
 	global $AUFTRAGSNUMMER_FORMAT;
