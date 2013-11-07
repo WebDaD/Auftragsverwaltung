@@ -125,7 +125,7 @@ function return_Auftraggeber($auftraggeber_id){
 	$data.="<privat>".$row[5]."</privat>";
 	return $data;
 }
-function copy2archive($id){ //TODO: Test with a backupped entry
+function copy2archive($id){
 	global $oc;
 	global $AUFTRAGSNUMMER_FORMAT;
 	
@@ -146,7 +146,7 @@ function copy2archive($id){ //TODO: Test with a backupped entry
 	rrmdir($old_path);
 	return;
 }
-function updateXMLStatus($id,$status){ //TODO: Test this by Changing a Status as steuer
+function updateXMLStatus($id,$status){ 
 	global $AUFTRAGSNUMMER_FORMAT;
 	global $oc;
 	$file = $oc["basepath"].return_Auftragsnummer($id,getAuftragsDatum($id) , $AUFTRAGSNUMMER_FORMAT)."/dataset.xml";
@@ -162,7 +162,7 @@ function updateXMLStatus($id,$status){ //TODO: Test this by Changing a Status as
 	fwrite($handle,$content);
 	fclose($handle);
 }
-function getAuftragsDatum($auftrags_id){ //TODO: Test by using one of the above ones
+function getAuftragsDatum($auftrags_id){
 	$sql = "SELECT datum FROM auftraege WHERE id=".$auftrags_id;
 	$res = mysql_query($sql);
 	$row = mysql_fetch_row($res);
