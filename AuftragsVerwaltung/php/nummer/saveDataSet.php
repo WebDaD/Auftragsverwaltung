@@ -83,6 +83,8 @@ if($_SESSION["write"]=="1"){
 		fwrite($handle,"</dataset>");
 		fclose($handle);
 		
+		exec("php /share/MD0_DATA/Web/owncloud/apps/files/triggerupdate.php ".$oc["basepath"].$aid."/dataset.xml");
+		
 		if(count($_FILES)>0){
 		$tempname = $_FILES['File']['tmp_name'];
 		$name = $_FILES['File']['name'];

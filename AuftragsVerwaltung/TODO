@@ -2,6 +2,7 @@
 	Archiv hat Details (mit Notizen)
 	Tabellen mit Farbigen Zeilen
 	Sortierung nach Ort statt PLZ
+	Bei der Speicherung einer Auftragsnummer wird der Updatevorgang der OwnCloud angestoßen.
 
 Neue Software -> Offline-BerichtErsteller planen (siehe VOrlage) -> Datei speichern, Datensatz auch (bericht.xml), treeview für bildersieten, öffne Ordner, somehow stage (suche bericht.xml, dataset.xml)
 
