@@ -18,7 +18,7 @@ function html_createInputFile($id){
 	return "<input name=\"".$id."\" id=\"".$id."\" type=\"file\" class=\"\" />";
 }
 function html_createInputPassword($id, $value=""){
-	return "<input name=\"".$id."\" id=\"".$id."\" type=\"password\" class=\"\" value=\"".$value."\"/>";
+	return "<input name=\"".$id."\" id=\"".$id."\" type=\"password\" class=\"\" value=\"".$value."\" onkeyup=\"if (event.keyCode == 13) document.getElementById('login_submit').click()\"/>";
 }
 function html_createInputSelect($id,$db,$key_field,$value_field,$table ,$value="", $filter=""){
 	$output = "";

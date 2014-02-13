@@ -48,6 +48,7 @@ function loadLogin(){
 		{
 		e("output_header").innerHTML = 'Login';
 		e("output_text").innerHTML = ajax.responseText;
+		e("login_name").focus(); //TODO: Test this
 		}
 	};
 	ajax.open("POST", "./php/login/loadForm.php", true);

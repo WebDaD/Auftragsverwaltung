@@ -46,7 +46,7 @@ $dt = explode(".",$datum);
 $datum = $dt[2]."-".$dt[1]."-".$dt[0];
 if($_SESSION["write"]=="1"){
 	$dbid = database_connect($db);
-	$sql="INSERT INTO auftraege (datum, strasse,nummer, plz, ort, auftraggeber, status, adresszusatz, notizen)
+	$sql="INSERT INTO auftraege (datum, strasse,nummer, plz, ort, auftraggeber, status, adresszusatz, notizen, login)
 				VALUES (
 				'".$datum."',
 				'".$strasse."',
@@ -56,7 +56,8 @@ if($_SESSION["write"]=="1"){
 				'".$auftraggeber."',	
 				'S_1_INARBEIT',
 				'".$zusatz."',
-				'".$notes."'			
+				'".$notes."',
+				'".$_SESSION["uid"]."'		
 			);";
 	$check = mysql_query($sql,$dbid);
 	if($check){
@@ -80,6 +81,7 @@ if($_SESSION["write"]=="1"){
 		fwrite($handle,"<adresszusatz>".$zusatz."</adresszusatz>\n");
 		fwrite($handle,"<auftraggeber>".return_Auftraggeber($auftraggeber)."</auftraggeber>\n");
 		fwrite($handle,"<notizen>".$notes."</notizen>\n");
+		fwrite($handle,"<login>".return_LoginName($_SESSION["uid"])."</login>\n");
 		fwrite($handle,"</dataset>");
 		fclose($handle);
 		
