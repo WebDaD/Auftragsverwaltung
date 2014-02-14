@@ -39,7 +39,7 @@ function return_human_status($code){
 	switch($code){
 		case "S_1_INARBEIT":return "In Arbeit";
 		case "S_2_BERICHT":return "Bericht verschickt";
-		case "S_3_WIEDER":return "Wiedervorlage";
+		case "S_3_WIEDER":return "Bericht verschickt / Rechnung fehlt";
 		case "S_4_CANCELED":return "Abgesagt";
 		case "S_5_GEZAHLT":return "Gezahlt";
 		case "S_6_MAHNUNG":return "Mahnung verschickt";
