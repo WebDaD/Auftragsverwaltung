@@ -81,7 +81,7 @@ if($_SESSION["write"]=="1"){
 		fwrite($handle,"<adresszusatz>".$zusatz."</adresszusatz>\n");
 		fwrite($handle,"<auftraggeber>".return_Auftraggeber($auftraggeber)."</auftraggeber>\n");
 		fwrite($handle,"<notizen>".$notes."</notizen>\n");
-		fwrite($handle,"<login>".return_LoginName($_SESSION["uid"])."</login>\n");
+		fwrite($handle,"<login>".$_SESSION["uid"]."</login>\n");
 		fwrite($handle,"</dataset>");
 		fclose($handle);
 		
