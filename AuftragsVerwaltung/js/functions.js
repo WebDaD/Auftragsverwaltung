@@ -242,6 +242,38 @@ function loadArchiveDetails(id){
 	togglePopup();
 	popup_set("wait");
 }
+function saveArchiveEdit(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		if(ajax.responseText == "1"){
+			clear();
+			togglePopup();
+			loadArchive();
+			m_i("Saved.");
+		}
+		else{
+			clear();
+			togglePopup();
+			m_e(ajax.responseText);
+		}
+		}
+	};
+	var params="id="+id+"&"+p("archive_notes");
+	ajax.open("POST", "./php/archive/saveDataSet.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	wait();
+	if(e("nummer_status").value=='S_5_GEZAHLT'){
+		popup_set("copy");
+	}else {
+		popup_set("wait");
+	}
+}
 function loadReports(){
 	var ajax = getAjax();
 	ajax.onreadystatechange = function()
@@ -265,25 +297,17 @@ function loadOverviewDetails(id){
 	{
 	if(ajax.readyState == 4)
 		{
-		e("output_header").innerHTML = 'Details';
-		e("output_text").innerHTML = ajax.responseText;
-		cal = new JsDatePick({
-			useMode:2,
-			target:"nummer_datum",
-			limitToToday:false,
-			cellColorScheme:"ocean_blue",
-			imgPath:"../img/",
-			dateFormat:"%d.%m.%Y"
-				});
+		popup_set(ajax.responseText);
 		}
 	};
 	var params = "id="+id;
-	ajax.open("POST", "./php/overview/loadOverviewDetails.php", true);
+	ajax.open("POST", "./php/overview/loadDetailsForm.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", params.length);
 	ajax.setRequestHeader("Connection", "close");
 	ajax.send(params); 
-	wait();
+	togglePopup();
+	popup_set("wait");
 }
 function loadOverviewEdit(id){
 	var ajax = getAjax();

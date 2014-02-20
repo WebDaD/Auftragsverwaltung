@@ -5,7 +5,12 @@ require_once( realpath( dirname( __FILE__ ) ).'/../functions.php' );
 require_once( realpath( dirname( __FILE__ ) ).'/../html.php' );
 session_start();
 $dbid = database_connect($db);
-$sql = "SELECT a.id, a.datum, a.strasse,a.nummer, a.adresszusatz, a.plz, a.ort, g.firma AS auftraggeber, a.status FROM auftraege a, auftraggeber g WHERE g.id=a.auftraggeber AND a.status='S_5_GEZAHLT' ORDER BY id DESC";
+$sql = "SELECT a.id, a.datum, a.strasse, a.nummer, a.adresszusatz, a.plz, a.ort, g.firma AS auftraggeber, a.status, l.bg_color
+			FROM auftraege a, auftraggeber g, logins l
+			WHERE g.id = a.auftraggeber
+			AND l.uid=a.login
+			AND a.status = 'S_5_GEZAHLT'
+			ORDER BY id DESC";
 $res = mysql_query($sql,$dbid);
 
 $o = "";
@@ -24,7 +29,7 @@ $o .= "	</tr>";
 while($row=mysql_fetch_array($res)){
 	$dt = explode("-",$row["datum"]);
 	$datum = $dt[2].".".$dt[1].".".$dt[0];
-	$o .= "<tr>";
+	$o .= "<tr style=\"background-color:".$row["bg_color"]."\">";
 	$o .= "	<td>".return_Auftragsnummer($row["id"], $datum, $AUFTRAGSNUMMER_FORMAT)."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["datum"]."\">".$datum."</td>";
 	$o .= "	<td sorttable_customkey=\"".$row["plz"]."\">".$row["strasse"]." ".$row["nummer"]."<br/>".$row["plz"]." ".$row["ort"]."<br/>".$row["adresszusatz"]."</td>";
