@@ -29,5 +29,5 @@ $oc["http_link"]="http://".$_SERVER["HTTP_HOST"]."/owncloud/index.php/apps/files
 $oc["archive_link"]="http://".$_SERVER["HTTP_HOST"]."/owncloud/index.php/apps/files?dir=/Shared/archiv/";
 
 //vars
-$AUFTRAGSNUMMER_FORMAT = "####-MMYY";
+$AUFTRAGSNUMMER_FORMAT = "#####-MMYY";
 ?>

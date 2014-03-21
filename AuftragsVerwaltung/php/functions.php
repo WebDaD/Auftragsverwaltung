@@ -20,6 +20,7 @@ function return_Auftragsnummer($id,$datum, $format){
 		$repl_string.="#";
 	}
 	$r = str_replace($repl_string, str_pad($id,$length_of_id,"0",STR_PAD_LEFT), $r);
+	$r = trim($r,"0");
 	return $r;
 }
 function getPar($id, $error, $mandatory=true){
