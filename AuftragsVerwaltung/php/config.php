@@ -8,9 +8,9 @@
  */
 $PROGNAME="Auftragsverwaltung";
 $CUSTOMER="Thermografie Berger";
-$VERSION="1.3";
+$VERSION="1.4";
 $AUTHOR="Dominik Sigmund";
-$COPYRIGHT=$PROGNAME." v".$VERSION." &copy; 2013 WebDaD.eu";
+$COPYRIGHT=$PROGNAME." v".$VERSION." &copy; 2013 - 2015 WebDaD.eu";
 
 //DB-Access
 $db["server"]="localhost";

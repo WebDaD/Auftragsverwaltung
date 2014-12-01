@@ -14,6 +14,7 @@ function navigateTo(page){
 	switch(page){
 	case "auftragsnummer":loadAuftragsnummer();break;
 	case "overview":loadOverview();break;
+	case "open":loadOpen();break;
 	case "archive":loadArchive();break;
 	case "auftraggeber":loadAuftraggeber();break;
 	case "login":loadLogin();break;
@@ -200,6 +201,24 @@ function loadOverview(){
 		}
 	};
 	ajax.open("POST", "./php/overview/loadData.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", 0);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(null); 
+	wait();
+}
+function loadOpen(){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		e("output_header").innerHTML = 'Übersicht Aufträge';
+		e("output_text").innerHTML = ajax.responseText;
+		sorttable.makeSortable(e("table_auftraege"));
+		}
+	};
+	ajax.open("POST", "./php/open/loadData.php", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.setRequestHeader("Content-length", 0);
 	ajax.setRequestHeader("Connection", "close");
@@ -444,6 +463,164 @@ function saveOverviewEdit(id){
 		popup_set("wait");
 	}
 }
+
+
+function loadOpenDetails(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		popup_set(ajax.responseText);
+		}
+	};
+	var params = "id="+id;
+	ajax.open("POST", "./php/open/loadDetailsForm.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	togglePopup();
+	popup_set("wait");
+}
+function loadOpenEdit(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		popup_set(ajax.responseText);
+		cal = new JsDatePick({
+			useMode:2,
+			target:"nummer_datum",
+			limitToToday:false,
+			cellColorScheme:"ocean_blue",
+			imgPath:"../img/",
+			dateFormat:"%d.%m.%Y"
+				});
+		}
+	};
+	var params = "id="+id;
+	ajax.open("POST", "./php/open/loadEditDataSetForm.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	togglePopup();
+	popup_set("wait");
+}
+function loadOpenDelete(id,name){
+	var answer = confirm("Do you really want to delete Auftrag "+name+"?");
+	if (answer){
+		var ajax = getAjax();
+		ajax.onreadystatechange = function()
+		{
+		if(ajax.readyState == 4)
+			{
+			if(ajax.responseText == "1"){
+				loadOpen();
+				m_i("Deleted.");
+			}
+			else{
+				m_e(ajax.responseText);
+			}
+			}
+		};
+		var params="id="+id;
+		ajax.open("POST", "./php/open/deleteDataSet.php", true);
+		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		ajax.setRequestHeader("Content-length", params.length);
+		ajax.setRequestHeader("Connection", "close");
+		ajax.send(params); 
+		wait();
+	}
+}
+function loadOvpenStatus(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		popup_set(ajax.responseText);
+		}
+	};
+	var params = "id="+id;
+	ajax.open("POST", "./php/open/loadStatusDataSetForm.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	togglePopup();
+	popup_set("wait");
+}
+function saveOpenStatus(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		if(ajax.responseText == "1"){
+			clear();
+			togglePopup();
+			loadOpen();
+			m_i("Saved.");
+		}
+		else{
+			clear();
+			togglePopup();
+			//loadOverview();
+			m_e(ajax.responseText);
+		}
+		}
+	};
+	var params=p("overview_status")+"&id="+id;
+	ajax.open("POST", "./php/open/changeStatus.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	wait();
+	if(e("overview_status").value=='S_5_GEZAHLT'){
+		popup_set("copy");
+	}else {
+		popup_set("wait");
+	}
+}
+function saveOpenEdit(id){
+	var ajax = getAjax();
+	ajax.onreadystatechange = function()
+	{
+	if(ajax.readyState == 4)
+		{
+		if(ajax.responseText == "1"){
+			clear();
+			togglePopup();
+			loadOvpen();
+			m_i("Saved.");
+		}
+		else{
+			clear();
+			togglePopup();
+			m_e(ajax.responseText);
+		}
+		}
+	};
+	var params=p("nummer_datum")+"&id="+id+"&"+p("nummer_strasse")+"&"+p("nummer_plz")+"&"+p("nummer_ort")+"&"+p("nummer_auftraggeber")+"&"+p("nummer_status")+"&"+p("nummer_nummer")+"&"+p("nummer_zusatz")+"&"+p("nummer_notes")+"&"+p("nummer_login")+"&"+p("nummer_nachkontrolle");
+	ajax.open("POST", "./php/open/saveDataSet.php", true);
+	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax.setRequestHeader("Content-length", params.length);
+	ajax.setRequestHeader("Connection", "close");
+	ajax.send(params); 
+	wait();
+	if(e("nummer_status").value=='S_5_GEZAHLT'){
+		popup_set("copy");
+	}else {
+		popup_set("wait");
+	}
+}
+
+
+
 function loadAuftraggeber(){
 	var ajax = getAjax();
 	ajax.onreadystatechange = function()

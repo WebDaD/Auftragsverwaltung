@@ -32,6 +32,7 @@ require_once 'php/config.php';
 			    	<ul>
 			    		<li><a href="#" onclick="navigateTo('auftragsnummer');">Auftragsnummer</a></li>
 			    		<li><a href="#" onclick="navigateTo('overview');">Aufträge</a></li>
+			    		<li><a href="#" onclick="navigateTo('open');">Offene Aufträge</a></li>
 			    		<li><a href="#" onclick="navigateTo('auftraggeber');">Auftraggeber</a></li>
 			    		<li><a href="#" onclick="navigateTo('archive');">Archiv</a></li>
 			    		<li><a href="#" onclick="navigateTo('reports');">Analysen</a></li>
