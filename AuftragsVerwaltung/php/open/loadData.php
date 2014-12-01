@@ -10,7 +10,7 @@ $sql = "SELECT a.id, a.datum, a.strasse, a.nummer, a.adresszusatz, a.plz, a.ort,
 			WHERE g.id = a.auftraggeber
 			AND l.uid=a.login
 			AND k.uid=a.nachkontrolle
-			AND a.status == 'S_8_OFFEN'
+			AND a.status = 'S_8_OFFEN'
 			ORDER BY id DESC";
 $res = mysql_query($sql,$dbid);
 
